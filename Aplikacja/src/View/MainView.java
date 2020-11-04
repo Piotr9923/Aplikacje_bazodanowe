@@ -49,7 +49,9 @@ public class MainView {
     
     private void initTable(){
         
-        table = new TablePanel();
+       String[] headers = {"aa","bb","cc"};
+        
+        table = new TablePanel(headers);
         table.setLocation(0, 120);
     
         frame.add(table);
@@ -69,6 +71,12 @@ public class MainView {
     public TableMenuPanel getTableMenuPanel() {
         return tableMenu;
     }
+
+    public TablePanel getTable() {
+        return table;
+    }
+    
+    
 
     public MainMenuPanel getMainMenuPanel(){
         

@@ -27,14 +27,14 @@ public class TableView {
         panel.setBorder(BorderFactory.createTitledBorder(
                 BorderFactory.createEtchedBorder(), "ODI Rankings", TitledBorder.CENTER, TitledBorder.TOP));
         String[][] rec = {
-            {"1", "Steve", "AUS"},
-            {"2", "Virat", "IND"},
-            {"3", "Kane", "NZ"},
-            {"4", "David", "AUS"},
-            {"5", "Ben", "ENG"},
-            {"6", "Eion", "ENG"},};
+            {"1", "Steve", "as","bb"},
+            {"2", "Virat", "IND","bb"},
+            {"3", "Kane", "NZ","bb"},
+            {"4", "David", "AUS","bb"},
+            {"5", "Ben", "ENG","bb"},
+            {"6", "Eion", "ENG","bb"},};
 
-        String[] header = {"Rank", "Player", "Country"};
+        String[] header = {"Rank", "Player", "Country","aa"};
         JTable table = new JTable(rec, header);
         table.setShowHorizontalLines(true);
         table.setGridColor(Color.orange);
