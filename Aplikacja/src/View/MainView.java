@@ -3,6 +3,10 @@ package View;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,7 +14,7 @@ import javax.swing.JPanel;
 public class MainView {
 
     private JFrame frame;
-    private MenuPanel menu;
+    private MainMenuPanel menu;
 
     public MainView() {
         frame = new JFrame();
@@ -27,7 +31,7 @@ public class MainView {
 
         frame.setVisible(true);
         
-        menu = new MenuPanel(frame.getWidth());
+        menu = new MainMenuPanel(frame.getWidth());
 
         frame.getContentPane().setLayout(null);
 
@@ -35,9 +39,28 @@ public class MainView {
 
     }
 
-    public MenuPanel getMenuPanel(){
+    public MainMenuPanel getMenuPanel(){
         
         return menu;
     }
+    
+    public void showBookWindow(){
+        
+        
+    }
+    
+    public void showReaderWindow(){
+        
+        
+    }
+    
+    public void showRaportWindow(){
+        
+
+
+        
+    }
+    
+    
 
 }

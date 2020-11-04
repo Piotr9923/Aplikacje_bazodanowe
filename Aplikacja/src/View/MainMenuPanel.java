@@ -4,11 +4,11 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class MenuPanel extends JPanel {
+public class MainMenuPanel extends JPanel {
 
-    private JButton ksiazki, czytelnicy, wyjscie;
+    private JButton ksiazki, czytelnicy, wyjscie, raporty;
 
-    public MenuPanel(int width) {
+    public MainMenuPanel(int width) {
 
         
         this.setSize(1366, 60);
@@ -22,11 +22,19 @@ public class MenuPanel extends JPanel {
         czytelnicy.setBounds(200, 10, 120, 40);
         this.add(czytelnicy);
         
+        raporty = new JButton("Raporty");
+        raporty.setBounds(370, 10, 120, 40);
+        this.add(raporty);
+        
         wyjscie = new JButton("Wyjście");
         wyjscie.setBounds(1150, 10, 100, 40);
         wyjscie.setBackground(Color.RED);
         this.add(wyjscie);
 
+    }
+
+    public JButton getRaporty() {
+        return raporty;
     }
 
     public JButton getKsiazki() {

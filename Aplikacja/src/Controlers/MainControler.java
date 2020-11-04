@@ -20,23 +20,32 @@ public class MainControler {
         view.getMenuPanel().getKsiazki().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                //TODO
+                view.showBookWindow();
             }
         });
 
         view.getMenuPanel().getCzytelnicy().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                //TODO
+                view.showReaderWindow();
             }
         });
 
+         view.getMenuPanel().getRaporty().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                view.showRaportWindow();
+            }
+        });
+        
         view.getMenuPanel().getWyjscie().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 System.exit(0);
             }
         });
+        
+      
 
     }
 

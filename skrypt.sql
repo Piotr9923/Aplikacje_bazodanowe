@@ -7,10 +7,10 @@ CREATE TABLE `Czytelnicy` (
   `rok_urodzenia` varchar(255)
 );
 
-CREATE TABLE `Ksiazki_do_wypozyczenia` (
+CREATE TABLE `Ksiazki` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `tytul` varchar(255),
-  `autor` varchar(255),
+  `id_autora` int,
   `gatunek` varchar(255),
   `dostepna` boolean
 );
@@ -23,7 +23,13 @@ CREATE TABLE `Wypozyczenia` (
   `data_zwrotu` date
 );
 
-CREATE TABLE `Adresy` (
+CREATE TABLE `Autor` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `imie` varchar(255),
+  `nazwisko` varchar(255)
+);
+
+CREATE TABLE `Adres` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `kod` varchar(255),
   `miejscowosc` varchar(255),
@@ -31,8 +37,10 @@ CREATE TABLE `Adresy` (
   `nr_domu` int
 );
 
-ALTER TABLE `Wypozyczenia` ADD FOREIGN KEY (`id_ksiazki`) REFERENCES `Ksiazki_do_wypozyczenia` (`id`);
+ALTER TABLE `Wypozyczenia` ADD FOREIGN KEY (`id_ksiazki`) REFERENCES `Ksiazki` (`id`);
 
 ALTER TABLE `Wypozyczenia` ADD FOREIGN KEY (`id_czytelnika`) REFERENCES `Czytelnicy` (`id`);
 
-ALTER TABLE `Czytelnicy` ADD FOREIGN KEY (`id_adresu`) REFERENCES `Adresy` (`id`);
+ALTER TABLE `Ksiazki` ADD FOREIGN KEY (`id_autora`) REFERENCES `Autor` (`id`);
+
+ALTER TABLE `Czytelnicy` ADD FOREIGN KEY (`id_adresu`) REFERENCES `Adres` (`id`);
