@@ -7,7 +7,7 @@ public class Czytelnik {
     private int id;
     private String imie;
     private String nazwisko;
-    private String adres;
+    private Adres adres;
     private String nrTelefonu;
     private int rokUrodzenia;
     
@@ -39,14 +39,16 @@ public class Czytelnik {
         this.nazwisko = nazwisko;
     }
 
-    public String getAdres() {
+    public Adres getAdres() {
         return adres;
     }
 
-    public void setAdres(String adres) {
+    public void setAdres(Adres adres) {
         this.adres = adres;
     }
 
+    
+    
     public String getNrTelefonu() {
         return nrTelefonu;
     }
