@@ -6,9 +6,9 @@ import javax.swing.JPanel;
 
 public class MainMenuPanel extends JPanel {
 
-    private JButton ksiazki, czytelnicy, wyjscie, raporty;
+    private JButton ksiazki, czytelnicy, wyjscie, wypozyczenia, raporty;
 
-    public MainMenuPanel(int width) {
+    public MainMenuPanel() {
 
         
         this.setSize(1366, 60);
@@ -23,14 +23,22 @@ public class MainMenuPanel extends JPanel {
         this.add(czytelnicy);
         
         raporty = new JButton("Raporty");
-        raporty.setBounds(370, 10, 120, 40);
+        raporty.setBounds(560, 10, 120, 40);
         this.add(raporty);
+        
+        wypozyczenia = new JButton("Wypożyczenia");
+        wypozyczenia.setBounds(370, 10, 140, 40);
+        this.add(wypozyczenia);
         
         wyjscie = new JButton("Wyjście");
         wyjscie.setBounds(1150, 10, 100, 40);
         wyjscie.setBackground(Color.RED);
         this.add(wyjscie);
 
+    }
+
+    public JButton getWypozyczenia() {
+        return wypozyczenia;
     }
 
     public JButton getRaporty() {

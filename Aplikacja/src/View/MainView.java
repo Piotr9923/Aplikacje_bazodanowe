@@ -15,6 +15,10 @@ public class MainView {
 
     private JFrame frame;
     private MainMenuPanel menu;
+    private TableMenuPanel tableMenu;
+    private TablePanel table;
+    
+    
 
     public MainView() {
         frame = new JFrame();
@@ -31,21 +35,48 @@ public class MainView {
 
         frame.setVisible(true);
         
-        menu = new MainMenuPanel(frame.getWidth());
+        menu = new MainMenuPanel();
 
         frame.getContentPane().setLayout(null);
 
         frame.add(menu);
+        
+        initTableMenu();
+        
+        initTable();
 
     }
+    
+    private void initTable(){
+        
+        table = new TablePanel();
+        table.setLocation(0, 120);
+    
+        frame.add(table);
+        
+        System.out.println(frame.getComponents().toString());
+    }
+    
+    private void initTableMenu(){
+        
+        tableMenu = new TableMenuPanel();
+        
+        tableMenu.setLocation(1100, 60);
+        
+        frame.add(tableMenu);
+    }
 
-    public MainMenuPanel getMenuPanel(){
+    public TableMenuPanel getTableMenuPanel() {
+        return tableMenu;
+    }
+
+    public MainMenuPanel getMainMenuPanel(){
         
         return menu;
     }
     
     public void showBookWindow(){
-        
+    
         
     }
     
