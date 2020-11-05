@@ -9,9 +9,22 @@ public class Wypozyczenie {
     
     private int id;
     private int idCzytelnika;
+    private String imieCzytelnika;
+    private String nazwiskoCzytelnika;
     private int idKsiazki;
+    private String tytul;
     private Date dataWypozyczenia;
-    private Date dataZwrotu;
+
+    public Wypozyczenie(int id, int idCzytelnika, String imieCzytelnika, String nazwiskoCzytelnika, int idKsiazki, String tytul, Date dataWypozyczenia) {
+        this.id = id;
+        this.idCzytelnika = idCzytelnika;
+        this.imieCzytelnika = imieCzytelnika;
+        this.nazwiskoCzytelnika = nazwiskoCzytelnika;
+        this.idKsiazki = idKsiazki;
+        this.tytul = tytul;
+        this.dataWypozyczenia = dataWypozyczenia;
+    }
+    
     
     
 
@@ -47,13 +60,19 @@ public class Wypozyczenie {
         this.dataWypozyczenia = dataWypozyczenia;
     }
 
-    public Date getDataZwrotu() {
-        return dataZwrotu;
+    public String getImieCzytelnika() {
+        return imieCzytelnika;
     }
 
-    public void setDataZwrotu(Date dataZwrotu) {
-        this.dataZwrotu = dataZwrotu;
+    public String getNazwiskoCzytelnika() {
+        return nazwiskoCzytelnika;
     }
+
+    public String getTytul() {
+        return tytul;
+    }
+
+   
     
     
     

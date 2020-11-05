@@ -11,6 +11,7 @@ public class MainControler {
 
     private BooksTableControler booksControler;
     private ReadersTableControler readersControler;
+    private BorrowingsTableControler borrowingControler;
     
     public MainControler() {
 
@@ -18,6 +19,7 @@ public class MainControler {
         
         booksControler = new BooksTableControler(this);
         readersControler = new ReadersTableControler(this);
+        borrowingControler = new BorrowingsTableControler(this);
         
         setButtonActions();
     }

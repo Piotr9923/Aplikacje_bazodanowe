@@ -1,11 +1,13 @@
 package View;
 
+import iteams.Wypozyczenie;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import models.MBorrowing;
 
 public class BorrowingsTable extends JPanel{
 
@@ -13,6 +15,8 @@ public class BorrowingsTable extends JPanel{
     private JScrollPane scroll;
 
     private DefaultTableModel tableModel;
+    
+    private MBorrowing data;
 
     public BorrowingsTable() {
 
@@ -21,7 +25,7 @@ public class BorrowingsTable extends JPanel{
 
         this.setBackground(Color.green);
         
-        String[]headers={"ID","ID wypożyczającego", "Imię","Nazwisko","ID książki", "Tytuł książki", "Data wypożyczenia"};
+        String[]headers={"ID","ID wypożyczającego", "Wypożyczający","ID książki", "Tytuł książki", "Data wypożyczenia"};
         tableModel = new DefaultTableModel(headers, 0);
 
         table = new JTable(tableModel);
@@ -39,6 +43,27 @@ public class BorrowingsTable extends JPanel{
         this.add(scroll);
         
         
+    }
+    
+    
+    public void updateTable() {
+
+        for (int i = 0; i < data.getBorrowings().size(); i++) {
+            
+            Wypozyczenie borrwoing = data.getBorrowings().get(i);
+            
+            Object[] objs = {borrwoing.getId(),borrwoing.getIdCzytelnika(), (borrwoing.getImieCzytelnika()+" "+borrwoing.getNazwiskoCzytelnika()),
+                borrwoing.getIdKsiazki(),borrwoing.getTytul(),borrwoing.getDataWypozyczenia()
+            };
+            tableModel.addRow(objs);
+        }
+
+    }
+    
+    
+    public void setData(MBorrowing data){
+        
+        this.data = data;
     }
 
     public void addRow() {
