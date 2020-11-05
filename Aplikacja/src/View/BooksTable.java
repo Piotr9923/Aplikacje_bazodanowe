@@ -7,21 +7,22 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-public class TablePanel extends JPanel {
+public class BooksTable extends JPanel{
 
     private JTable table;
     private JScrollPane scroll;
 
     private DefaultTableModel tableModel;
 
-    public TablePanel(String[] header) {
+    public BooksTable() {
 
         this.setSize(1100, 600);
         this.setLayout(null);
 
         this.setBackground(Color.green);
-
-        tableModel = new DefaultTableModel(header, 0);
+        
+        String[]headers={"ID","Tytuł","Autor","Gatunek","Status książki"};
+        tableModel = new DefaultTableModel(headers, 0);
 
         table = new JTable(tableModel);
         table.setSize(1100, 600);
@@ -36,10 +37,8 @@ public class TablePanel extends JPanel {
         scroll.setSize(1100, 600);
         scroll.setLocation(0, 0);
         this.add(scroll);
-
-        addRow();
-        addRow();
-
+        
+        
     }
 
     public void addRow() {
@@ -50,14 +49,13 @@ public class TablePanel extends JPanel {
     }
 
     public void removeRow() {
+         System.out.println(  table.getValueAt(table.getSelectedRow(), 0));
         if (table.getSelectedRow() >= 0) {
             tableModel.removeRow(table.getSelectedRow());
         }
+     
     }
 
-    public int getSelectedRow() {
-        return table.getSelectedRow();
-    }
 
     public DefaultTableModel getTableModel() {
         return tableModel;

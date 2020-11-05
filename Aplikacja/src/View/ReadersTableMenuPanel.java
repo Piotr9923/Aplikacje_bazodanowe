@@ -4,11 +4,11 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class TableMenuPanel extends JPanel {
+public class ReadersTableMenuPanel extends JPanel {
 
     private JButton dodaj, usun;
 
-    public TableMenuPanel() {
+    public ReadersTableMenuPanel() {
 
         this.setSize(200, 700);
         this.setLayout(null);

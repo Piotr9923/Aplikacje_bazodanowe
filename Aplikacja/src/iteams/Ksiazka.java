@@ -1,5 +1,5 @@
 
-package model;
+package iteams;
 
 
 public class Ksiazka {

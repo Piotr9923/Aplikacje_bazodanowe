@@ -1,5 +1,5 @@
 
-package model;
+package iteams;
 
 
 public class Czytelnik {
@@ -10,6 +10,16 @@ public class Czytelnik {
     private Adres adres;
     private String nrTelefonu;
     private int rokUrodzenia;
+
+    public Czytelnik(int id, String imie, String nazwisko, String nrTelefonu, int rokUrodzenia, Adres adres) {
+        this.id = id;
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.nrTelefonu = nrTelefonu;
+        this.rokUrodzenia = rokUrodzenia;
+        this.adres = adres;
+    }
+    
     
     
     

@@ -9,14 +9,15 @@ public class MainControler {
 
     private MainView view;
 
-    private TableMenuControler tableControler;
-    
+    private BooksTableControler booksControler;
+    private ReadersTableControler readersControler;
     
     public MainControler() {
 
         view = new MainView();
         
-        tableControler = new TableMenuControler(this);
+        booksControler = new BooksTableControler(this);
+        readersControler = new ReadersTableControler(this);
         
         setButtonActions();
     }
@@ -36,6 +37,14 @@ public class MainControler {
                 view.showReaderWindow();
             }
         });
+        
+         view.getMainMenuPanel().getWypozyczenia().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                view.showBorrowingsWindow();
+            }
+        });
+         
 
          view.getMainMenuPanel().getRaporty().addActionListener(new ActionListener() {
             @Override
