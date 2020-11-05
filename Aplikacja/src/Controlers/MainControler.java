@@ -16,7 +16,7 @@ public class MainControler {
 
         view = new MainView();
         
-        tableControler = new TableMenuControler(view.getTableMenuPanel());
+        tableControler = new TableMenuControler(this);
         
         setButtonActions();
     }
@@ -53,6 +53,10 @@ public class MainControler {
         
       
 
+    }
+
+    public MainView getView() {
+        return view;
     }
 
 }

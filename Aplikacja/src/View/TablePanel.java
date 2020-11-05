@@ -49,4 +49,18 @@ public class TablePanel extends JPanel {
         tableModel.addRow(objs);
     }
 
+    public void removeRow() {
+        if (table.getSelectedRow() >= 0) {
+            tableModel.removeRow(table.getSelectedRow());
+        }
+    }
+
+    public int getSelectedRow() {
+        return table.getSelectedRow();
+    }
+
+    public DefaultTableModel getTableModel() {
+        return tableModel;
+    }
+
 }

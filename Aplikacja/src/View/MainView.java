@@ -16,7 +16,7 @@ public class MainView {
     private JFrame frame;
     private MainMenuPanel menu;
     private TableMenuPanel tableMenu;
-    private TablePanel table;
+    private TablePanel table, actualTable, table2;
     
     
 
@@ -49,15 +49,23 @@ public class MainView {
     
     private void initTable(){
         
-       String[] headers = {"aa","bb","cc"};
+        String[] headers = {"aa","bb","cc"};
         
         table = new TablePanel(headers);
         table.setLocation(0, 120);
-    
-        frame.add(table);
         
-        System.out.println(frame.getComponents().toString());
+        
+        String []head={"zz","xx","yy","bb"};
+        table2 = new TablePanel(head);
+        table2.setLocation(0, 120);
+    
+        actualTable = table;
+        
+        
+        frame.add(actualTable);
+        
     }
+    
     
     private void initTableMenu(){
         
@@ -73,7 +81,7 @@ public class MainView {
     }
 
     public TablePanel getTable() {
-        return table;
+        return actualTable;
     }
     
     
@@ -84,11 +92,21 @@ public class MainView {
     }
     
     public void showBookWindow(){
+        
+         frame.remove(actualTable);
+        actualTable = table2;
+        
+        frame.add(actualTable);
     
         
     }
     
     public void showReaderWindow(){
+        
+         frame.remove(actualTable);
+        actualTable = table;
+        
+        frame.add(actualTable);
         
         
     }
