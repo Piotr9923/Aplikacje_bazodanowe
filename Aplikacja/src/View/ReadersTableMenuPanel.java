@@ -13,17 +13,17 @@ public class ReadersTableMenuPanel extends JPanel {
         this.setSize(200, 700);
         this.setLayout(null);
         dodaj = new JButton("Dodaj");
+        dodaj.setBackground(Color.green);
         dodaj.setBounds(50, 50, 100, 40);
         this.add(dodaj);
-        
+
         usun = new JButton("Usuń");
         usun.setBounds(50, 150, 100, 40);
+        usun.setBackground(Color.yellow);
+
         this.add(usun);
-        
-        
+
         this.setBackground(Color.darkGray);
-        
-        
 
     }
 
@@ -34,7 +34,5 @@ public class ReadersTableMenuPanel extends JPanel {
     public JButton getDodaj() {
         return dodaj;
     }
-    
-    
 
 }

@@ -13,15 +13,18 @@ public class BorrowingsTableMenuPanel extends JPanel {
         this.setSize(200, 700);
         this.setLayout(null);
         dodaj = new JButton("Dodaj");
+        dodaj.setBackground(Color.green);
+
         dodaj.setBounds(50, 50, 100, 40);
         this.add(dodaj);
-        
+
         zwroc = new JButton("Zwróć");
         zwroc.setBounds(50, 150, 100, 40);
+                zwroc.setBackground(Color.cyan);
+
         this.add(zwroc);
-        
-        
-        this.setBackground(Color.darkGray);   
+
+        this.setBackground(Color.darkGray);
 
     }
 
@@ -32,7 +35,5 @@ public class BorrowingsTableMenuPanel extends JPanel {
     public JButton getDodaj() {
         return dodaj;
     }
-    
-    
 
 }

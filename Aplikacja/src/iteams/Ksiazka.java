@@ -9,13 +9,18 @@ public class Ksiazka {
     private int id;
     private String gatunek;
     private boolean dostepna;
+
+    public Ksiazka(int id,String tytul, String autor, String gatunek, boolean dostepna) {
+        this.tytul = tytul;
+        this.autor = autor;
+        this.id = id;
+        this.gatunek = gatunek;
+        this.dostepna = dostepna;
+    }
     
     
     
-    
-    
-    
-    
+   
     
 
     public String getTytul() {

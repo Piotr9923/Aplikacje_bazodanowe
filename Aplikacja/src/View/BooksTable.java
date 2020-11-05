@@ -1,11 +1,13 @@
 package View;
 
+import iteams.Ksiazka;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import models.MBooks;
 
 public class BooksTable extends JPanel{
 
@@ -13,6 +15,8 @@ public class BooksTable extends JPanel{
     private JScrollPane scroll;
 
     private DefaultTableModel tableModel;
+    
+    private MBooks data;
 
     public BooksTable() {
 
@@ -39,6 +43,25 @@ public class BooksTable extends JPanel{
         this.add(scroll);
         
         
+    }
+    
+    public void updateTable() {
+
+        for (int i = 0; i < data.getBooks().size(); i++) {
+            
+            Ksiazka book = data.getBooks().get(i);
+            String status = "Dostępna";
+            if(book.isDostepna()==false) status="Wypożyczona";
+            
+            
+            Object[] objs = {book.getId(),book.getTytul(),book.getAutor(),book.getGatunek(),status};
+            tableModel.addRow(objs);
+        }
+
+    }
+    
+    public void setData(MBooks data){
+        this.data = data;
     }
 
     public void addRow() {

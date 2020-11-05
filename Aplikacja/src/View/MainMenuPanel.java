@@ -15,19 +15,23 @@ public class MainMenuPanel extends JPanel {
         this.setLayout(null);
         ksiazki = new JButton("Książki");
         ksiazki.setBounds(50, 10, 100, 40);
+        ksiazki.setBackground(Color.white);
         this.add(ksiazki);
         this.setBackground(Color.gray);
         
         czytelnicy = new JButton("Czytelnicy");
         czytelnicy.setBounds(200, 10, 120, 40);
+        czytelnicy.setBackground(Color.white);
         this.add(czytelnicy);
         
         raporty = new JButton("Raporty");
         raporty.setBounds(560, 10, 120, 40);
+        raporty.setBackground(Color.white);
         this.add(raporty);
         
         wypozyczenia = new JButton("Wypożyczenia");
         wypozyczenia.setBounds(370, 10, 140, 40);
+        wypozyczenia.setBackground(Color.white);
         this.add(wypozyczenia);
         
         wyjscie = new JButton("Wyjście");

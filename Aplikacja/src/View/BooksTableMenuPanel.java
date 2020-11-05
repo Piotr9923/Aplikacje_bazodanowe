@@ -14,10 +14,12 @@ public class BooksTableMenuPanel extends JPanel {
         this.setLayout(null);
         dodaj = new JButton("Dodaj");
         dodaj.setBounds(50, 50, 100, 40);
+        dodaj.setBackground(Color.green);
         this.add(dodaj);
         
         usun = new JButton("Usuń");
         usun.setBounds(50, 150, 100, 40);
+        usun.setBackground(Color.yellow);
         this.add(usun);
         
         
