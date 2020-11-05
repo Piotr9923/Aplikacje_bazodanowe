@@ -30,7 +30,7 @@ public class SQLConnector {
     public void loadReadersList(ArrayList<Czytelnik> readers){
         
          try {
-            resultSet = statement.executeQuery("SELECT * FROM `Czytelnicy` Inner JOIN Adres ON Czytelnicy.id_adresu=Adres.id");
+            resultSet = statement.executeQuery("SELECT * FROM `Czytelnicy` Inner JOIN Adresy ON Czytelnicy.id_adresu=Adresy.id");
             
        
              while(resultSet.next()){
