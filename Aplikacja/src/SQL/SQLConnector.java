@@ -1,6 +1,6 @@
 package SQL;
 
-import iteams.Adres;
+import iteams.Adress;
 import iteams.Author;
 import java.sql.*;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class SQLConnector {
                         resultSet.getString("imie"), resultSet.getString("nazwisko"),
                         resultSet.getString("nr_telefonu"),
                         resultSet.getInt("rok_urodzenia"),
-                        new Adres(resultSet.getString("kod"), resultSet.getString("miejscowosc"), resultSet.getString("ulica"), resultSet.getInt("nr_domu"))));
+                        new Adress(resultSet.getString("kod"), resultSet.getString("miejscowosc"), resultSet.getString("ulica"), resultSet.getInt("nr_domu"))));
 
             }
 

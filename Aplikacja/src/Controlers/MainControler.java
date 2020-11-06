@@ -1,7 +1,6 @@
 package Controlers;
 
 import View.MainView;
-import aplikacja.TableView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

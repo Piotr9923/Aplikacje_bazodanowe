@@ -57,7 +57,7 @@ public class ReadersTable extends JPanel {
             Czytelnik czytelnik = data.getReaders().get(i);
             
             Object[] objs = {czytelnik.getId(), czytelnik.getImie(), czytelnik.getNazwisko(),
-                czytelnik.getNrTelefonu(), czytelnik.getAdres().adresToString(), czytelnik.getRokUrodzenia()};
+                czytelnik.getNrTelefonu(), czytelnik.getAdres().adressToString(), czytelnik.getRokUrodzenia()};
 
             tableModel.addRow(objs);
         }

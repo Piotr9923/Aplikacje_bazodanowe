@@ -7,11 +7,11 @@ public class Czytelnik {
     private int id;
     private String imie;
     private String nazwisko;
-    private Adres adres;
+    private Adress adres;
     private String nrTelefonu;
     private int rokUrodzenia;
 
-    public Czytelnik(int id, String imie, String nazwisko, String nrTelefonu, int rokUrodzenia, Adres adres) {
+    public Czytelnik(int id, String imie, String nazwisko, String nrTelefonu, int rokUrodzenia, Adress adres) {
         this.id = id;
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -51,11 +51,11 @@ public class Czytelnik {
         this.nazwisko = nazwisko;
     }
 
-    public Adres getAdres() {
+    public Adress getAdres() {
         return adres;
     }
 
-    public void setAdres(Adres adres) {
+    public void setAdres(Adress adres) {
         this.adres = adres;
     }
 

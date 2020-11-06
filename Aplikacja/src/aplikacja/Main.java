@@ -2,7 +2,6 @@
 package aplikacja;
 
 import Controlers.MainControler;
-import View.MainView;
 
 
 public class Main {

@@ -45,7 +45,7 @@ public class MBooks {
     
     public void updateAvailableBooksList(){
         availableBooks.removeAll(availableBooks);
-        sql.loadBooksList(availableBooks);
+        sql.loadAvailableBooksList(availableBooks);
     }
     
     public void updateAuthorsList(){
@@ -65,11 +65,6 @@ public class MBooks {
     
     public void addNewBook(String[] data){
         
-      // int adressId = sql.getAdressId(data[4],data[5],data[6],data[7]);
-              
-       //sql.addReadear(data[0], data[1], adressId, data[2], Integer.parseInt(data[3]));
-            
-       
        sql.addAuthor(data[1],data[2]);
        int authorId = sql.getAuthorID(data[1], data[2]);
        

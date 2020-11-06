@@ -3,8 +3,6 @@ package Controlers;
 
 import AddDataForm.AddReaderForm;
 import models.MReaders;
-import View.BooksTableMenuPanel;
-import View.BooksTable;
 import View.ReadersTable;
 import View.ReadersTableMenuPanel;
 import java.awt.event.ActionEvent;
