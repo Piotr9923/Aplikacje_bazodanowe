@@ -47,7 +47,13 @@ public class BorrowingsTable extends JPanel{
     
     
     public void updateTable() {
-
+        
+        
+         for(int i=tableModel.getRowCount()-1;i>=0;i--){
+            
+            tableModel.removeRow(i);
+        }
+        
         for (int i = 0; i < data.getBorrowings().size(); i++) {
             
             Wypozyczenie borrwoing = data.getBorrowings().get(i);
@@ -64,21 +70,6 @@ public class BorrowingsTable extends JPanel{
     public void setData(MBorrowing data){
         
         this.data = data;
-    }
-
-    public void addRow() {
-
-        Object[] objs = {1, "FCBARCA", 35};
-
-        tableModel.addRow(objs);
-    }
-
-    public void removeRow() {
-         System.out.println(  table.getValueAt(table.getSelectedRow(), 0));
-        if (table.getSelectedRow() >= 0) {
-            tableModel.removeRow(table.getSelectedRow());
-        }
-     
     }
 
 

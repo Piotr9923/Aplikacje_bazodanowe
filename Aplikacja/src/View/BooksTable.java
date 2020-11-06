@@ -52,7 +52,6 @@ public class BooksTable extends JPanel{
             tableModel.removeRow(i);
         }
         
-
         for (int i = 0; i < data.getBooks().size(); i++) {
             
             Ksiazka book = data.getBooks().get(i);

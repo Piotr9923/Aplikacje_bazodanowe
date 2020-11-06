@@ -49,6 +49,7 @@ public class BooksTableControler {
                 form.addBook();
                 form.hide();
                 mBooks.updateBooksList();
+                mBooks.updateAvailableBooksList();
                 mBooks.updateAuthorsList();
                 table.updateTable();
 
@@ -68,6 +69,11 @@ public class BooksTableControler {
 
     public MBooks getmBooks() {
         return mBooks;
+    }
+    
+    public void updateTable(){
+        mBooks.updateBooksList();
+        table.updateTable();
     }
     
     

@@ -17,7 +17,7 @@ public class BorrowingsTableControler {
     private MBooks books;
     private MReaders readers;
     private AddBorrowingForm form;
-    
+
     public BorrowingsTableControler(MainControler controler) {
 
         books = controler.getBooksControler().getmBooks();
@@ -28,13 +28,13 @@ public class BorrowingsTableControler {
         table.setData(mBorrowing);
 
         table.updateTable();
-        
-        form = new AddBorrowingForm(mBorrowing,books,readers);
+
+        form = new AddBorrowingForm(mBorrowing, books, readers);
 
         controler.getView().getBorrowingsMenu().getDodaj().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+
                 form.show();
 
             }
@@ -46,16 +46,15 @@ public class BorrowingsTableControler {
 
             }
         });
-        
+
         form.getSave().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
-                form.addBook();
+                form.addBorrowing();
                 form.hide();
-                //mBooks.updateBooksList();
-                //mBooks.updateAuthorsList();
-                //table.updateTable();
+                mBorrowing.updateBorrowingList();
+                table.updateTable();
 
             }
         });
@@ -69,6 +68,11 @@ public class BorrowingsTableControler {
             }
         });
 
+    }
+
+    public void updateTable() {
+        mBorrowing.updateBorrowingList();
+        table.updateTable();
     }
 
 }

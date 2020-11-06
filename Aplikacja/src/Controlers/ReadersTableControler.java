@@ -75,6 +75,10 @@ public class ReadersTableControler {
         return mReaders;
     }
     
+     public void updateTable(){
+         mReaders.updateReadersList();
+        table.updateTable();
+    }
     
     
 }

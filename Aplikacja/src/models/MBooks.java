@@ -11,6 +11,7 @@ public class MBooks {
     
     private SQLConnector sql;
     private ArrayList<Ksiazka> books;
+    private ArrayList<Ksiazka> availableBooks;
     private ArrayList<Author> authors;
     
     public MBooks(){
@@ -18,6 +19,7 @@ public class MBooks {
         sql = new SQLConnector();
         
         books = new ArrayList();
+        availableBooks = new ArrayList();
         
         authors = new ArrayList();
         
@@ -25,14 +27,25 @@ public class MBooks {
 
         sql.loadBooksList(books);
         
+        sql.loadAvailableBooksList(availableBooks);
+        
         sql.loadAuthorsList(authors);
         
 
+    }
+
+    public ArrayList<Ksiazka> getAvailableBooks() {
+        return availableBooks;
     }
     
     public void updateBooksList(){
         books.removeAll(books);
         sql.loadBooksList(books);
+    }
+    
+    public void updateAvailableBooksList(){
+        availableBooks.removeAll(availableBooks);
+        sql.loadBooksList(availableBooks);
     }
     
     public void updateAuthorsList(){

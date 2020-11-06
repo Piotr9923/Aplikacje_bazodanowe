@@ -19,7 +19,7 @@ public class SQLConnector {
     public void connect() {
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Biblioteka", "root", "haslo");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Biblioteka?useUnicode=yes&characterEncoding=UTF-8", "root", "haslo");
 
             statement = connection.createStatement();
 
@@ -66,6 +66,22 @@ public class SQLConnector {
         }
 
     }
+    
+    public void loadAvailableBooksList(ArrayList<Ksiazka> books) {
+
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM `Ksiazki` Inner JOIN Autorzy ON Ksiazki.id_autora=Autorzy.id WHERE Ksiazki.dostepna=true");
+
+            while (resultSet.next()) {
+
+                books.add(new Ksiazka(resultSet.getInt("id"), resultSet.getString("tytul"), (resultSet.getString("imie") + " " + resultSet.getString("nazwisko")), resultSet.getString("gatunek"), resultSet.getBoolean("dostepna")));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     public void loadAuthorsList(ArrayList<Author> authors) {
 
@@ -87,7 +103,7 @@ public class SQLConnector {
     public void loadBorrowingList(ArrayList<Wypozyczenie> borrowing) {
 
         try {
-            resultSet = statement.executeQuery("SELECT Wypozyczenia.*, Ksiazki.tytul, Czytelnicy.imie, Czytelnicy.nazwisko FROM Wypozyczenia INNER JOIN Ksiazki ON Ksiazki.id = Wypozyczenia.id_ksiazki INNER JOIN Czytelnicy ON Czytelnicy.id=Wypozyczenia.id WHERE Wypozyczenia.data_zwrotu IS NULL");
+            resultSet = statement.executeQuery("SELECT Wypozyczenia.*, Ksiazki.tytul, Czytelnicy.imie, Czytelnicy.nazwisko FROM Wypozyczenia INNER JOIN Ksiazki ON Ksiazki.id = Wypozyczenia.id_ksiazki INNER JOIN Czytelnicy ON Czytelnicy.id=Wypozyczenia.id_czytelnika WHERE Wypozyczenia.data_zwrotu IS NULL");
 
             while (resultSet.next()) {
 
@@ -148,7 +164,7 @@ public class SQLConnector {
 
         try {
             statement.execute("INSERT INTO `Ksiazki` (`id`, `tytul`, `id_autora`, `gatunek`, `dostepna`) "
-                    + "VALUES (NULL, '" + title + "', '" + authorId + "', '" + type + "', '1')");
+                    + "VALUES (NULL, N'" + title + "', '" + authorId + "', '" + type + "', '1')");
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -178,52 +194,22 @@ public class SQLConnector {
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return id;
     }
 
-//    public void getCar(ArrayList car, int id) {
-//
-//        try {
-//            resultSet = statement.executeQuery("Select * FROM car WHERE id=" + id);
-//            
-//       
-//             while(resultSet.next()){
-//                 
-//                car.setBrand(resultSet.getString("car_brand"));
-//                car.setCarState(resultSet.getString("car_state"));
-//                car.setFuelType(resultSet.getString("fuel_type"));
-//                car.setModel(resultSet.getString("car_model"));
-//                car.setRegistrationNumber(resultSet.getString("registration_number"));
-//                car.setSerialNumber(resultSet.getString("serial_number"));
-//                car.setYear(Integer.parseInt(resultSet.getString("year")));
-//                
-//            }
-//            
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//    }
-//    
-//    public void addCar(Car car){
-//        
-//        try {
-//            statement.execute("INSERT INTO `car` (`car_brand`, `car_model`, `year`, `registration_number`, `serial_number`, `fuel_type`, `car_state`) "
-//                    + "VALUES ('"+car.getBrand()+"', '"+car.getModel()+"', '"+(""+car.getYear())+"', '"+car.getRegistrationNumber()+"', '"+car.getSerialNumber()+"', '"+car.getFuelTypeToDataBase()+"', '"+car.getCarStateToDataBase()+"')");
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }
-//    
-//    public void updateCar(Car car,int id){
-//         try {
-//            statement.execute("UPDATE `car` SET `car_brand` = '"+car.getBrand()+"', `car_model` = '"+car.getModel()+"', `year` = '"+car.getYear()+"', `registration_number` = '"+car.getRegistrationNumber()+"', `serial_number` = '"+car.getSerialNumber()+"', `fuel_type` = '"+car.getFuelTypeToDataBase()+"', `car_state` = '"+car.getCarStateToDataBase()+"' WHERE `car`.`id` = 1 ");
-//         } catch (SQLException ex) {
-//            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//         
-//    }
+    public void addBorrowing(int bookId, int readerId, Date date) {
+
+        try {
+            statement.execute("INSERT INTO `Wypozyczenia` (`id`, `id_czytelnika`, `id_ksiazki`, `data_wypozyczenia`, `data_zwrotu`) "
+                    + "VALUES (NULL, '" + readerId + "', '" + bookId + "', '" + date + "', NULL)");
+
+            statement.execute("UPDATE `Ksiazki` SET `dostepna` = '0' WHERE `Ksiazki`.`id` = " + bookId);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 }

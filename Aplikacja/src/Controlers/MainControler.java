@@ -38,6 +38,7 @@ public class MainControler {
         view.getMainMenuPanel().getKsiazki().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                booksControler.updateTable();
                 view.showBookWindow();
             }
         });
@@ -45,6 +46,7 @@ public class MainControler {
         view.getMainMenuPanel().getCzytelnicy().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                readersControler.updateTable();
                 view.showReaderWindow();
             }
         });
@@ -52,6 +54,7 @@ public class MainControler {
          view.getMainMenuPanel().getWypozyczenia().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                borrowingControler.updateTable();
                 view.showBorrowingsWindow();
             }
         });
@@ -72,7 +75,6 @@ public class MainControler {
         });
         
       
-
     }
 
     public MainView getView() {
