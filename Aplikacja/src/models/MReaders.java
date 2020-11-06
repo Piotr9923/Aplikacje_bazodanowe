@@ -29,6 +29,17 @@ public class MReaders {
         return readers;
     }
     
+    public void updateReadersList(){
+        readers.removeAll(readers);
+        sql.loadReadersList(readers);
+    }
    
+    public void addNewReader(String[] data){
+        
+       int adressId = sql.getAdressId(data[4],data[5],data[6],data[7]);
+              
+       sql.addReadear(data[0], data[1], adressId, data[2], Integer.parseInt(data[3]));
+            
+    }
     
 }

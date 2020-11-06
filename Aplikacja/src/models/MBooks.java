@@ -23,6 +23,11 @@ public class MBooks {
         
 
     }
+    
+    public void updateBooksList(){
+        books.removeAll(books);
+        sql.loadBooksList(books);
+    }
 
     public ArrayList<Ksiazka> getBooks() {
         return books;

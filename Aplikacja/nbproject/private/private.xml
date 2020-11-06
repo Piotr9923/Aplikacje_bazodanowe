@@ -7,10 +7,14 @@
             <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/models/MBooks.java</file>
             <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/models/MReaders.java</file>
             <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/models/MBorrowing.java</file>
-            <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/Controlers/BorrowingsTableControler.java</file>
+            <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/View/BooksTableMenuPanel.java</file>
+            <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/Controlers/ReadersTableControler.java</file>
             <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/SQL/SQLConnector.java</file>
+            <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/aplikacja/Main.java</file>
             <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/View/BorrowingsTable.java</file>
             <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/Controlers/MainControler.java</file>
+            <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/Controlers/BooksTableControler.java</file>
+            <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/AddDataForm/AddReaderForm.java</file>
         </group>
     </open-files>
 </project-private>

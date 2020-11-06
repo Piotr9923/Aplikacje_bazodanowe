@@ -49,15 +49,15 @@ public class SQLConnector {
         }
 
     }
-    
-     public void loadBooksList(ArrayList<Ksiazka> books) {
+
+    public void loadBooksList(ArrayList<Ksiazka> books) {
 
         try {
             resultSet = statement.executeQuery("SELECT * FROM `Ksiazki` Inner JOIN Autorzy ON Ksiazki.id_autora=Autorzy.id");
 
             while (resultSet.next()) {
 
-                books.add(new Ksiazka(resultSet.getInt("id"),resultSet.getString("tytul"),(resultSet.getString("imie")+" "+resultSet.getString("nazwisko")),resultSet.getString("gatunek"),resultSet.getBoolean("dostepna")));
+                books.add(new Ksiazka(resultSet.getInt("id"), resultSet.getString("tytul"), (resultSet.getString("imie") + " " + resultSet.getString("nazwisko")), resultSet.getString("gatunek"), resultSet.getBoolean("dostepna")));
             }
 
         } catch (SQLException ex) {
@@ -65,18 +65,17 @@ public class SQLConnector {
         }
 
     }
-    
-    
-        public void loadBorrowingList(ArrayList<Wypozyczenie> borrowing) {
+
+    public void loadBorrowingList(ArrayList<Wypozyczenie> borrowing) {
 
         try {
             resultSet = statement.executeQuery("SELECT Wypozyczenia.*, Ksiazki.tytul, Czytelnicy.imie, Czytelnicy.nazwisko FROM Wypozyczenia INNER JOIN Ksiazki ON Ksiazki.id = Wypozyczenia.id_ksiazki INNER JOIN Czytelnicy ON Czytelnicy.id=Wypozyczenia.id");
 
             while (resultSet.next()) {
 
-                borrowing.add(new Wypozyczenie(resultSet.getInt("id"),resultSet.getInt("id_czytelnika"),
-                resultSet.getString("imie"),resultSet.getString("nazwisko"),resultSet.getInt("id_ksiazki"),
-                resultSet.getString("tytul"),resultSet.getDate("data_wypozyczenia")));
+                borrowing.add(new Wypozyczenie(resultSet.getInt("id"), resultSet.getInt("id_czytelnika"),
+                        resultSet.getString("imie"), resultSet.getString("nazwisko"), resultSet.getInt("id_ksiazki"),
+                        resultSet.getString("tytul"), resultSet.getDate("data_wypozyczenia")));
             }
 
         } catch (SQLException ex) {
@@ -84,11 +83,51 @@ public class SQLConnector {
         }
 
     }
+
+    public int getAdressId(String code, String town, String street, String number) {
+
+        int id = -1;
+
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM Adresy WHERE kod='" + code + "' AND miejscowosc='"
+                    + town + "' AND ulica='" + street + "' AND nr_domu=" + number);
+
+            while (resultSet.next()) {
+                id = resultSet.getInt("id");
+            }
+
+            if (id == -1) {
+
+                statement.execute("INSERT INTO `Adresy` (`id`, `kod`, `miejscowosc`, `ulica`, `nr_domu`) "
+                        + "VALUES (NULL, '" + code + "', '" + town + "', '" + street + "', '" + number + "')");
+
+                resultSet = statement.executeQuery("SELECT * FROM Adresy WHERE kod='" + code + "' AND miejscowosc='"
+                        + town + "' AND ulica='" + street + "' AND nr_domu=" + number);
+
+                while (resultSet.next()) {
+                    id = resultSet.getInt("id");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return id;
+    }
     
-    
-    
-    
-    
+    public void addReadear(String firstname, String lastname, int adress, String phone, int year){
+        
+         try {
+            statement.execute("INSERT INTO `Czytelnicy` (`id`, `imie`, `nazwisko`, `id_adresu`, `nr_telefonu`, `rok_urodzenia`) "
+                    + "VALUES (NULL, '"+firstname+"', '"+lastname+"', "+adress+", '"+phone+"', "+year+")");
+         } catch (SQLException ex) {
+            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        
+    }
 
 //    public void getCar(ArrayList car, int id) {
 //

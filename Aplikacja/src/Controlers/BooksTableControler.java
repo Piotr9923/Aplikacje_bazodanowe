@@ -30,6 +30,9 @@ public class BooksTableControler {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
+                mBooks.updateBooksList();
+                table.updateTable();
+                
             }      
         });
         
