@@ -21,7 +21,9 @@ public class Czytelnik {
     }
     
     
-    
+    public String getReader(){
+          return ""+id+" - "+imie+" "+nazwisko;
+    }
     
     
 

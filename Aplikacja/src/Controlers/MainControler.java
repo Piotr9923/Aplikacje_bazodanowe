@@ -24,6 +24,15 @@ public class MainControler {
         setButtonActions();
     }
 
+    public BooksTableControler getBooksControler() {
+        return booksControler;
+    }
+
+    public ReadersTableControler getReadersControler() {
+        return readersControler;
+    }
+    
+
     private void setButtonActions() {
 
         view.getMainMenuPanel().getKsiazki().addActionListener(new ActionListener() {

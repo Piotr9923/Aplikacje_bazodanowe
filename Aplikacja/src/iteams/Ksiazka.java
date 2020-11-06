@@ -63,6 +63,10 @@ public class Ksiazka {
         this.dostepna = dostepna;
     }
     
+    public String getBook(){
+        
+        return ""+id+" - "+tytul;
+    }
     
     
     

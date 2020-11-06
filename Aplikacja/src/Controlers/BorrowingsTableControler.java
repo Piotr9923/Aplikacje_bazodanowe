@@ -1,46 +1,74 @@
-
 package Controlers;
 
-
+import AddDataForm.AddBorrowingForm;
 import View.BorrowingsTable;
 import View.BorrowingsTableMenuPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import models.MBooks;
 import models.MBorrowing;
-
+import models.MReaders;
 
 public class BorrowingsTableControler {
-    
-    
+
     private BorrowingsTableMenuPanel panel;
     private BorrowingsTable table;
     private MBorrowing mBorrowing;
+    private MBooks books;
+    private MReaders readers;
+    private AddBorrowingForm form;
     
-    public BorrowingsTableControler(MainControler controler){
-          
-        
+    public BorrowingsTableControler(MainControler controler) {
+
+        books = controler.getBooksControler().getmBooks();
+        readers = controler.getReadersControler().getmReaders();
         mBorrowing = new MBorrowing();
-        
-        table=controler.getView().getBorrowings();
+
+        table = controler.getView().getBorrowings();
         table.setData(mBorrowing);
-        
+
         table.updateTable();
         
-        controler.getView().getBorrowingsMenu().getDodaj().addActionListener(new ActionListener(){
+        form = new AddBorrowingForm(mBorrowing,books,readers);
+
+        controler.getView().getBorrowingsMenu().getDodaj().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
-            }      
+                form.show();
+
+            }
         });
-        
-        controler.getView().getBorrowingsMenu().getZwroc().addActionListener(new ActionListener(){
+
+        controler.getView().getBorrowingsMenu().getZwroc().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-  
-            }      
+
+            }
         });
         
+        form.getSave().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+                form.addBook();
+                form.hide();
+                //mBooks.updateBooksList();
+                //mBooks.updateAuthorsList();
+                //table.updateTable();
+
+            }
+        });
+
+        form.getCancel().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+                form.hide();
+
+            }
+        });
+
     }
-    
-    
+
 }

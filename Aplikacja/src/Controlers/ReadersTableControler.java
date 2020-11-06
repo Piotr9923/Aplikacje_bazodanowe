@@ -69,7 +69,12 @@ public class ReadersTableControler {
         });
                 
                 
-        
     }
+
+    public MReaders getmReaders() {
+        return mReaders;
+    }
+    
+    
     
 }
