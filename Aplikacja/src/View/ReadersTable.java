@@ -7,7 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import iteams.Czytelnik;
+import iteams.Reader;
 
 public class ReadersTable extends JPanel {
 
@@ -54,10 +54,10 @@ public class ReadersTable extends JPanel {
 
         for (int i = 0; i < data.getReaders().size(); i++) {
             
-            Czytelnik czytelnik = data.getReaders().get(i);
+            Reader czytelnik = data.getReaders().get(i);
             
-            Object[] objs = {czytelnik.getId(), czytelnik.getImie(), czytelnik.getNazwisko(),
-                czytelnik.getNrTelefonu(), czytelnik.getAdres().adressToString(), czytelnik.getRokUrodzenia()};
+            Object[] objs = {czytelnik.getId(), czytelnik.getFirstName(), czytelnik.getLastname(),
+                czytelnik.getPhoneNumber(), czytelnik.getAdress().adressToString(), czytelnik.getBornYear()};
 
             tableModel.addRow(objs);
         }

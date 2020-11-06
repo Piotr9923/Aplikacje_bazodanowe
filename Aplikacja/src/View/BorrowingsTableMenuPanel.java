@@ -6,34 +6,34 @@ import javax.swing.JPanel;
 
 public class BorrowingsTableMenuPanel extends JPanel {
 
-    private JButton dodaj, zwroc;
+    private JButton addButton, returnButton;
 
     public BorrowingsTableMenuPanel() {
 
         this.setSize(200, 700);
         this.setLayout(null);
-        dodaj = new JButton("Dodaj");
-        dodaj.setBackground(Color.green);
+        addButton = new JButton("Dodaj");
+        addButton.setBackground(Color.green);
 
-        dodaj.setBounds(50, 50, 100, 40);
-        this.add(dodaj);
+        addButton.setBounds(50, 50, 100, 40);
+        this.add(addButton);
 
-        zwroc = new JButton("Zwróć");
-        zwroc.setBounds(50, 150, 100, 40);
-                zwroc.setBackground(Color.cyan);
+        returnButton = new JButton("Zwróć");
+        returnButton.setBounds(50, 150, 100, 40);
+                returnButton.setBackground(Color.cyan);
 
-        this.add(zwroc);
+        this.add(returnButton);
 
         this.setBackground(Color.darkGray);
 
     }
 
-    public JButton getZwroc() {
-        return zwroc;
+    public JButton getReturnButton() {
+        return returnButton;
     }
 
-    public JButton getDodaj() {
-        return dodaj;
+    public JButton getAddButton() {
+        return addButton;
     }
 
 }

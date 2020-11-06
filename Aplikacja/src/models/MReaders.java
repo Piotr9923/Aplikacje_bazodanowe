@@ -3,13 +3,13 @@ package models;
 
 import SQL.SQLConnector;
 import java.util.ArrayList;
-import iteams.Czytelnik;
+import iteams.Reader;
 
 
 public class MReaders {
     
     private SQLConnector sql;
-    private ArrayList<Czytelnik> readers;
+    private ArrayList<Reader> readers;
     
     
     public MReaders(){
@@ -25,7 +25,7 @@ public class MReaders {
 
     }
 
-    public ArrayList<Czytelnik> getReaders() {
+    public ArrayList<Reader> getReaders() {
         return readers;
     }
     

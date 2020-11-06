@@ -6,9 +6,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import iteams.Czytelnik;
-import iteams.Ksiazka;
-import iteams.Wypozyczenie;
+import iteams.Reader;
+import iteams.Book;
+import iteams.Borrowing;
 
 public class SQLConnector {
 
@@ -30,14 +30,14 @@ public class SQLConnector {
 
     }
 
-    public void loadReadersList(ArrayList<Czytelnik> readers) {
+    public void loadReadersList(ArrayList<Reader> readers) {
 
         try {
             resultSet = statement.executeQuery("SELECT * FROM `Czytelnicy` Inner JOIN Adresy ON Czytelnicy.id_adresu=Adresy.id");
 
             while (resultSet.next()) {
 
-                readers.add(new Czytelnik(resultSet.getInt("id"),
+                readers.add(new Reader(resultSet.getInt("id"),
                         resultSet.getString("imie"), resultSet.getString("nazwisko"),
                         resultSet.getString("nr_telefonu"),
                         resultSet.getInt("rok_urodzenia"),
@@ -51,14 +51,14 @@ public class SQLConnector {
 
     }
 
-    public void loadBooksList(ArrayList<Ksiazka> books) {
+    public void loadBooksList(ArrayList<Book> books) {
 
         try {
             resultSet = statement.executeQuery("SELECT * FROM `Ksiazki` Inner JOIN Autorzy ON Ksiazki.id_autora=Autorzy.id");
 
             while (resultSet.next()) {
 
-                books.add(new Ksiazka(resultSet.getInt("id"), resultSet.getString("tytul"), (resultSet.getString("imie") + " " + resultSet.getString("nazwisko")), resultSet.getString("gatunek"), resultSet.getBoolean("dostepna")));
+                books.add(new Book(resultSet.getInt("id"), resultSet.getString("tytul"), (resultSet.getString("imie") + " " + resultSet.getString("nazwisko")), resultSet.getString("gatunek"), resultSet.getBoolean("dostepna")));
             }
 
         } catch (SQLException ex) {
@@ -66,15 +66,15 @@ public class SQLConnector {
         }
 
     }
-    
-    public void loadAvailableBooksList(ArrayList<Ksiazka> books) {
+
+    public void loadAvailableBooksList(ArrayList<Book> books) {
 
         try {
             resultSet = statement.executeQuery("SELECT * FROM `Ksiazki` Inner JOIN Autorzy ON Ksiazki.id_autora=Autorzy.id WHERE Ksiazki.dostepna=true");
 
             while (resultSet.next()) {
 
-                books.add(new Ksiazka(resultSet.getInt("id"), resultSet.getString("tytul"), (resultSet.getString("imie") + " " + resultSet.getString("nazwisko")), resultSet.getString("gatunek"), resultSet.getBoolean("dostepna")));
+                books.add(new Book(resultSet.getInt("id"), resultSet.getString("tytul"), (resultSet.getString("imie") + " " + resultSet.getString("nazwisko")), resultSet.getString("gatunek"), resultSet.getBoolean("dostepna")));
             }
 
         } catch (SQLException ex) {
@@ -100,14 +100,14 @@ public class SQLConnector {
 
     }
 
-    public void loadBorrowingList(ArrayList<Wypozyczenie> borrowing) {
+    public void loadBorrowingList(ArrayList<Borrowing> borrowing) {
 
         try {
             resultSet = statement.executeQuery("SELECT Wypozyczenia.*, Ksiazki.tytul, Czytelnicy.imie, Czytelnicy.nazwisko FROM Wypozyczenia INNER JOIN Ksiazki ON Ksiazki.id = Wypozyczenia.id_ksiazki INNER JOIN Czytelnicy ON Czytelnicy.id=Wypozyczenia.id_czytelnika WHERE Wypozyczenia.data_zwrotu IS NULL");
 
             while (resultSet.next()) {
 
-                borrowing.add(new Wypozyczenie(resultSet.getInt("id"), resultSet.getInt("id_czytelnika"),
+                borrowing.add(new Borrowing(resultSet.getInt("id"), resultSet.getInt("id_czytelnika"),
                         resultSet.getString("imie"), resultSet.getString("nazwisko"), resultSet.getInt("id_ksiazki"),
                         resultSet.getString("tytul"), resultSet.getDate("data_wypozyczenia")));
             }
@@ -210,6 +210,43 @@ public class SQLConnector {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void returnBook(int borrowingId, int bookId, Date date) {
+
+        try {
+            statement.execute("UPDATE `Wypozyczenia` SET `data_zwrotu` = '"+date+"' WHERE `Wypozyczenia`.`id` ="+borrowingId);
+            statement.execute("UPDATE `Ksiazki` SET `dostepna` = '1' WHERE `Ksiazki`.`id` ="+bookId);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void getRanking() {
+
+        try {
+            statement.execute("SELECT Czytelnicy.imie, Czytelnicy.nazwisko, COUNT(*) as ilosc "
+                    + "FROM Czytelnicy JOIN Wypozyczenia ON (Czytelnicy.id=Wypozyczenia.id_czytelnika) "
+                    + "GROUP BY Czytelnicy.id ORDER BY ilosc DESC");
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void getBorrowingLongTime(){
+        
+        try {
+        statement.execute(" SELECT Wypozyczenia.id_czytelnika,Czytelnicy.imie, Czytelnicy.nazwisko, Wypozyczenia.id_ksiazki, Ksiazki.tytul, Wypozyczenia.data_wypozyczenia, DATEDIFF(\"2020-11-07\",Wypozyczenia.data_wypozyczenia) as czas\n" +
+" FROM Wypozyczenia JOIN Czytelnicy ON Czytelnicy.id=Wypozyczenia.id_czytelnika\n" +
+" JOIN Ksiazki ON Wypozyczenia.id_ksiazki=Ksiazki.id\n" +
+" WHERE Wypozyczenia.data_zwrotu IS NULL AND DATEDIFF(\"2020-11-07\",Wypozyczenia.data_wypozyczenia)>14");
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
 }

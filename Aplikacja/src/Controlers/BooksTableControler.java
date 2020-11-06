@@ -25,7 +25,7 @@ public class BooksTableControler {
 
         form = new AddBookForm(mBooks);
 
-        controler.getView().getBooksMenu().getDodaj().addActionListener(new ActionListener() {
+        controler.getView().getBooksMenu().getAddButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
@@ -34,7 +34,7 @@ public class BooksTableControler {
             }
         });
 
-        controler.getView().getBooksMenu().getUsun().addActionListener(new ActionListener() {
+        controler.getView().getBooksMenu().getRemoveButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 

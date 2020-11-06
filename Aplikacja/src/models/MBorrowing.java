@@ -1,18 +1,19 @@
 package models;
 
 import SQL.SQLConnector;
-import iteams.Ksiazka;
-import iteams.Wypozyczenie;
+import iteams.Book;
+import iteams.Borrowing;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.ArrayList;
 
 public class MBorrowing {
 
     private SQLConnector sql;
-    private ArrayList<Wypozyczenie> borrowing;
+    private ArrayList<Borrowing> borrowing;
 
     public MBorrowing() {
 
@@ -26,7 +27,7 @@ public class MBorrowing {
 
     }
 
-    public ArrayList<Wypozyczenie> getBorrowings() {
+    public ArrayList<Borrowing> getBorrowings() {
         return borrowing;
     }
 
@@ -42,6 +43,18 @@ public class MBorrowing {
         java.sql.Date borrowingDate = new java.sql.Date(myDate.getTime());
 
         sql.addBorrowing(bookId, readerId, borrowingDate);
+    }
+    
+    public void returnBook(int borrowingId, int bookId) throws ParseException{
+        
+       String date = (LocalDateTime.now().getYear() + "-" + LocalDateTime.now().getMonthValue() + "-" + LocalDateTime.now().getDayOfMonth());
+
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date myDate = formatter.parse(date);
+        java.sql.Date returnDate = new java.sql.Date(myDate.getTime());
+        
+        sql.returnBook(borrowingId, bookId, returnDate);
+        
     }
 
 }

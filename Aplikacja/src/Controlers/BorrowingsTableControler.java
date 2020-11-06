@@ -31,7 +31,7 @@ public class BorrowingsTableControler {
 
         form = new AddBorrowingForm(mBorrowing, books, readers);
 
-        controler.getView().getBorrowingsMenu().getDodaj().addActionListener(new ActionListener() {
+        controler.getView().getBorrowingsMenu().getAddButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
@@ -40,10 +40,13 @@ public class BorrowingsTableControler {
             }
         });
 
-        controler.getView().getBorrowingsMenu().getZwroc().addActionListener(new ActionListener() {
+        controler.getView().getBorrowingsMenu().getReturnButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
+                table.returnBook();
+                mBorrowing.updateBorrowingList();
+                table.updateTable();
             }
         });
 

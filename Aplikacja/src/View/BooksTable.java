@@ -1,6 +1,6 @@
 package View;
 
-import iteams.Ksiazka;
+import iteams.Book;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -54,12 +54,12 @@ public class BooksTable extends JPanel{
         
         for (int i = 0; i < data.getBooks().size(); i++) {
             
-            Ksiazka book = data.getBooks().get(i);
+            Book book = data.getBooks().get(i);
             String status = "Dostępna";
-            if(book.isDostepna()==false) status="Wypożyczona";
+            if(book.isAvailable()==false) status="Wypożyczona";
             
             
-            Object[] objs = {book.getId(),book.getTytul(),book.getAutor(),book.getGatunek(),status};
+            Object[] objs = {book.getId(),book.getTitle(),book.getAuthor(),book.getType(),status};
             tableModel.addRow(objs);
         }
 

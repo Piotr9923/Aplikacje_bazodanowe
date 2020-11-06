@@ -16,24 +16,22 @@ public class Adress {
     }
     
     public String adressToString(){
-        
-        
         return town+" ul. "+ street+" "+number;
     }
 
-    public String getKod() {
+    public String getCode() {
         return code;
     }
 
-    public String getMiejscowosc() {
+    public String getTown() {
         return town;
     }
 
-    public String getUlica() {
+    public String getStreet() {
         return street;
     }
 
-    public int getNrDomu() {
+    public int getNumber() {
         return number;
     }
        

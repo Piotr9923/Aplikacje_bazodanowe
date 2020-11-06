@@ -3,15 +3,15 @@ package models;
 
 import SQL.SQLConnector;
 import iteams.Author;
-import iteams.Ksiazka;
+import iteams.Book;
 import java.util.ArrayList;
 
 
 public class MBooks {
     
     private SQLConnector sql;
-    private ArrayList<Ksiazka> books;
-    private ArrayList<Ksiazka> availableBooks;
+    private ArrayList<Book> books;
+    private ArrayList<Book> availableBooks;
     private ArrayList<Author> authors;
     
     public MBooks(){
@@ -34,7 +34,7 @@ public class MBooks {
 
     }
 
-    public ArrayList<Ksiazka> getAvailableBooks() {
+    public ArrayList<Book> getAvailableBooks() {
         return availableBooks;
     }
     
@@ -53,7 +53,7 @@ public class MBooks {
         sql.loadAuthorsList(authors);
     }
 
-    public ArrayList<Ksiazka> getBooks() {
+    public ArrayList<Book> getBooks() {
         return books;
     }
 
