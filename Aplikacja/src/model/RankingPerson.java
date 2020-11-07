@@ -1,14 +1,14 @@
 
 package model;
 
-public class RankingElement {
+public class RankingPerson {
     
     private int id;
     private String firstname;
     private String lastname;
     private int count;
 
-    public RankingElement(int id, String firstname, String lastname, int count) {
+    public RankingPerson(int id, String firstname, String lastname, int count) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;

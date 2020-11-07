@@ -3,13 +3,15 @@ package SQL;
 import model.Adress;
 import model.Author;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Reader;
 import model.Book;
 import model.Borrowing;
-import model.RankingElement;
+import model.RankingPerson;
+import model.TooLongRecord;
 
 public class SQLConnector {
 
@@ -224,7 +226,7 @@ public class SQLConnector {
         }
     }
 
-    public void getRanking(ArrayList <RankingElement> rankingData) {
+    public void getRanking(ArrayList<RankingPerson> rankingData) {
 
         try {
             resultSet = statement.executeQuery("SELECT Czytelnicy.id, Czytelnicy.imie, Czytelnicy.nazwisko, COUNT(*) as ilosc "
@@ -232,22 +234,29 @@ public class SQLConnector {
                     + "GROUP BY Czytelnicy.id ORDER BY ilosc DESC");
 
             while (resultSet.next()) {
-                rankingData.add(new RankingElement(resultSet.getInt("id"),resultSet.getString("imie"),resultSet.getString("nazwisko"),resultSet.getInt("ilosc")));
+                rankingData.add(new RankingPerson(resultSet.getInt("id"), resultSet.getString("imie"), resultSet.getString("nazwisko"), resultSet.getInt("ilosc")));
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void getBorrowingTooLongTime() {
+    public void getBorrowingTooLongTime(ArrayList<TooLongRecord> tooLongData) {
 
-        //TODO while
+        String date = (LocalDateTime.now().getYear()+ "-" + LocalDateTime.now().getMonthValue() + "-" + LocalDateTime.now().getDayOfMonth());
+
         try {
-           resultSet = statement.executeQuery(" SELECT Wypozyczenia.id_czytelnika,Czytelnicy.imie, Czytelnicy.nazwisko, Wypozyczenia.id_ksiazki, Ksiazki.tytul, Wypozyczenia.data_wypozyczenia, DATEDIFF(\"2020-11-07\",Wypozyczenia.data_wypozyczenia) as czas\n"
+            resultSet = statement.executeQuery("SELECT Wypozyczenia.id_czytelnika,Czytelnicy.imie, Czytelnicy.nazwisko, Wypozyczenia.id_ksiazki, Ksiazki.tytul, Wypozyczenia.data_wypozyczenia, DATEDIFF(\""+date+"\",Wypozyczenia.data_wypozyczenia) as czas\n"
                     + " FROM Wypozyczenia JOIN Czytelnicy ON Czytelnicy.id=Wypozyczenia.id_czytelnika\n"
-                    + " JOIN Ksiazki ON Wypozyczenia.id_ksiazki=Ksiazki.id\n"
-                    + " WHERE Wypozyczenia.data_zwrotu IS NULL AND DATEDIFF(\"2020-11-07\",Wypozyczenia.data_wypozyczenia)>14");
+                    + " JOIN Ksiazki ON Wypozyczenia.id_ksiazki=Ksiazki.id"
+                    + " WHERE Wypozyczenia.data_zwrotu IS NULL AND DATEDIFF(\""+date+"\",Wypozyczenia.data_wypozyczenia)>14 ORDER BY Wypozyczenia.data_wypozyczenia");
+
+            while (resultSet.next()) {
+                tooLongData.add(new TooLongRecord(resultSet.getInt("id_czytelnika"),
+                        resultSet.getString("imie"), resultSet.getString("nazwisko"), resultSet.getInt("id_ksiazki"),
+                        resultSet.getString("tytul"), resultSet.getString("data_wypozyczenia"), resultSet.getInt("czas")));
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
@@ -286,7 +295,7 @@ public class SQLConnector {
         }
         return canBe;
     }
-    
+
     public boolean canBeBookDeleted(int id) {
 
         boolean canBe = true;
@@ -302,23 +311,22 @@ public class SQLConnector {
         return canBe;
     }
 
-    
     public void deleteBook(int id) {
 
         try {
-            statement.execute("DELETE FROM Ksiazki WHERE Ksiazki.id="+id);
+            statement.execute("DELETE FROM Ksiazki WHERE Ksiazki.id=" + id);
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void deleteReader(int id) {
 
         try {
-            statement.execute("DELETE FROM Czytelnicy WHERE Czytelnicy.id="+id);
+            statement.execute("DELETE FROM Czytelnicy WHERE Czytelnicy.id=" + id);
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

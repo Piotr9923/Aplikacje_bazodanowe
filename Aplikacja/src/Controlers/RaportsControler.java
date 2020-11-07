@@ -9,7 +9,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
-import model.RankingElement;
+import model.RankingPerson;
+import model.TooLongRecord;
 
 public class RaportsControler {
 
@@ -18,7 +19,8 @@ public class RaportsControler {
     private MyFileChooser fileChooser;
     private PDFCreator pdfCreator;
 
-    private ArrayList<RankingElement> rankingData;
+    private ArrayList<RankingPerson> rankingData;
+    private ArrayList<TooLongRecord> tooLongDate;
     private SQLConnector sql;
 
     public RaportsControler(MainControler controler) {
@@ -29,13 +31,15 @@ public class RaportsControler {
         window = controler.getView().getRaportsWindow();
 
         rankingData = new ArrayList();
+        tooLongDate = new ArrayList();
         
         sql = new SQLConnector();
         sql.connect();
         
         sql.getRanking(rankingData);
+        sql.getBorrowingTooLongTime(tooLongDate);
 
-        pdfCreator = new PDFCreator(rankingData);
+        pdfCreator = new PDFCreator(rankingData,tooLongDate);
         
 
         window.getReadersRanking().addActionListener(new ActionListener() {
@@ -53,6 +57,11 @@ public class RaportsControler {
         window.getTooLongBorrowing().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                
+                fileChooser.showFileChooser();
+                if (fileChooser.isChoosen() == true) {
+                    pdfCreator.createTooLong(fileChooser.getPath());
+                }
 
             }
         });
