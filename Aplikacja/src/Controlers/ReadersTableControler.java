@@ -2,7 +2,7 @@
 package Controlers;
 
 import AddDataForm.AddReaderForm;
-import models.MReaders;
+import mdata.MReaders;
 import View.ReadersTable;
 import View.ReadersTableMenuPanel;
 import java.awt.event.ActionEvent;

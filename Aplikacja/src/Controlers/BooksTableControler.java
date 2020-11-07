@@ -5,7 +5,7 @@ import View.BooksTableMenuPanel;
 import View.BooksTable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import models.MBooks;
+import mdata.MBooks;
 
 public class BooksTableControler {
 

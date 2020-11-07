@@ -9,9 +9,9 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import models.MBooks;
-import models.MBorrowing;
-import models.MReaders;
+import mdata.MBooks;
+import mdata.MBorrowing;
+import mdata.MReaders;
 
 public class AddBorrowingForm {
 

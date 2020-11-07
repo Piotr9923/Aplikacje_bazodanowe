@@ -1,5 +1,5 @@
 
-package iteams;
+package model;
 
 
 public class Reader {
@@ -25,8 +25,7 @@ public class Reader {
           return ""+id+" - "+lastname+" "+firstname;
     }
     
-    
-
+   
     public int getId() {
         return id;
     }

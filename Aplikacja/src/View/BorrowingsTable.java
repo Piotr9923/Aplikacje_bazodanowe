@@ -1,6 +1,6 @@
 package View;
 
-import iteams.Borrowing;
+import model.Borrowing;
 import java.awt.Color;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import models.MBorrowing;
+import mdata.MBorrowing;
 
 public class BorrowingsTable extends JPanel {
 
@@ -25,8 +25,6 @@ public class BorrowingsTable extends JPanel {
 
         this.setSize(1100, 600);
         this.setLayout(null);
-
-        this.setBackground(Color.green);
 
         String[] headers = {"ID wypożyczającego", "Wypożyczający", "ID książki", "Tytuł książki", "Data wypożyczenia"};
         tableModel = new DefaultTableModel(headers, 0);

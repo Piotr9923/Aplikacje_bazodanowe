@@ -5,9 +5,9 @@ import View.BorrowingsTable;
 import View.BorrowingsTableMenuPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import models.MBooks;
-import models.MBorrowing;
-import models.MReaders;
+import mdata.MBooks;
+import mdata.MBorrowing;
+import mdata.MReaders;
 
 public class BorrowingsTableControler {
 

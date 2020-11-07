@@ -1,14 +1,15 @@
 package SQL;
 
-import iteams.Adress;
-import iteams.Author;
+import model.Adress;
+import model.Author;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import iteams.Reader;
-import iteams.Book;
-import iteams.Borrowing;
+import model.Reader;
+import model.Book;
+import model.Borrowing;
+import model.RankingElement;
 
 public class SQLConnector {
 
@@ -223,14 +224,17 @@ public class SQLConnector {
         }
     }
 
-    public void getRanking() {
+    public void getRanking(ArrayList <RankingElement> rankingData) {
 
-        //TODO while
         try {
-            statement.executeQuery("SELECT Czytelnicy.imie, Czytelnicy.nazwisko, COUNT(*) as ilosc "
+            resultSet = statement.executeQuery("SELECT Czytelnicy.id, Czytelnicy.imie, Czytelnicy.nazwisko, COUNT(*) as ilosc "
                     + "FROM Czytelnicy JOIN Wypozyczenia ON (Czytelnicy.id=Wypozyczenia.id_czytelnika) "
                     + "GROUP BY Czytelnicy.id ORDER BY ilosc DESC");
 
+            while (resultSet.next()) {
+                rankingData.add(new RankingElement(resultSet.getInt("id"),resultSet.getString("imie"),resultSet.getString("nazwisko"),resultSet.getInt("ilosc")));
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -240,7 +244,7 @@ public class SQLConnector {
 
         //TODO while
         try {
-            statement.executeQuery(" SELECT Wypozyczenia.id_czytelnika,Czytelnicy.imie, Czytelnicy.nazwisko, Wypozyczenia.id_ksiazki, Ksiazki.tytul, Wypozyczenia.data_wypozyczenia, DATEDIFF(\"2020-11-07\",Wypozyczenia.data_wypozyczenia) as czas\n"
+           resultSet = statement.executeQuery(" SELECT Wypozyczenia.id_czytelnika,Czytelnicy.imie, Czytelnicy.nazwisko, Wypozyczenia.id_ksiazki, Ksiazki.tytul, Wypozyczenia.data_wypozyczenia, DATEDIFF(\"2020-11-07\",Wypozyczenia.data_wypozyczenia) as czas\n"
                     + " FROM Wypozyczenia JOIN Czytelnicy ON Czytelnicy.id=Wypozyczenia.id_czytelnika\n"
                     + " JOIN Ksiazki ON Wypozyczenia.id_ksiazki=Ksiazki.id\n"
                     + " WHERE Wypozyczenia.data_zwrotu IS NULL AND DATEDIFF(\"2020-11-07\",Wypozyczenia.data_wypozyczenia)>14");

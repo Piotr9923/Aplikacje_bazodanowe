@@ -1,8 +1,8 @@
-package models;
+package mdata;
 
 import SQL.SQLConnector;
 import java.util.ArrayList;
-import iteams.Reader;
+import model.Reader;
 
 public class MReaders {
 

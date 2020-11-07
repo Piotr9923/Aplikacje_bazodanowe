@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,7 +13,9 @@ public class MainView {
     private BooksTableMenuPanel booksMenu;
     private ReadersTableMenuPanel readersMenu;
     private BorrowingsTableMenuPanel borrowingsMenu;
+    private RaportsMenuPanel raportsMenu;
 
+    private RaportsWindow raportsWindow;
     private BooksTable books;
     private ReadersTable readers;
     private BorrowingsTable borrowings;
@@ -48,6 +51,9 @@ public class MainView {
 
     private void initTable() {
 
+        raportsWindow = new RaportsWindow();
+        raportsWindow.setLocation(0, 120);
+
         books = new BooksTable();
         books.setLocation(0, 120);
 
@@ -64,6 +70,9 @@ public class MainView {
 
     private void initTableMenu() {
 
+        raportsMenu = new RaportsMenuPanel();
+        raportsMenu.setLocation(1100, 60);
+
         booksMenu = new BooksTableMenuPanel();
         booksMenu.setLocation(1100, 60);
 
@@ -77,6 +86,15 @@ public class MainView {
 
         frame.add(actualMenu);
 
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    
+    public RaportsWindow getRaportsWindow() {
+        return raportsWindow;
     }
 
     public BooksTableMenuPanel getBooksMenu() {
@@ -114,19 +132,19 @@ public class MainView {
     public MainMenuPanel getMainMenuPanel() {
         return menu;
     }
-    
 
     public void showBookWindow() {
         actualMenu.setVisible(false);
         frame.remove(actualMenu);
         actualMenu = booksMenu;
-
         frame.add(actualMenu);
         actualMenu.setVisible(true);
+
+        actualTable.setVisible(false);
         frame.remove(actualTable);
         actualTable = books;
-
         frame.add(books);
+        actualTable.setVisible(true);
 
     }
 
@@ -134,36 +152,47 @@ public class MainView {
 
         actualMenu.setVisible(false);
         frame.remove(actualMenu);
-
         actualMenu = readersMenu;
-
         frame.add(actualMenu);
         actualMenu.setVisible(true);
 
+        actualTable.setVisible(false);
         frame.remove(actualTable);
         actualTable = readers;
-
         frame.add(readers);
+        actualTable.setVisible(true);
+
     }
 
     public void showBorrowingsWindow() {
+
         actualMenu.setVisible(false);
         frame.remove(actualMenu);
         actualMenu = borrowingsMenu;
-
         frame.add(actualMenu);
         actualMenu.setVisible(true);
 
+        actualTable.setVisible(false);
         frame.remove(actualTable);
         actualTable = borrowings;
-
         frame.add(borrowings);
+        actualTable.setVisible(true);
 
     }
 
     public void showRaportWindow() {
 
+        actualMenu.setVisible(false);
+        frame.remove(actualMenu);
+        actualMenu = raportsMenu;
+        frame.add(actualMenu);
+        actualMenu.setVisible(true);
+
+        actualTable.setVisible(false);
+        frame.remove(actualTable);
+        actualTable = raportsWindow;
+        frame.add(raportsWindow);
+        actualTable.setVisible(true);
     }
 
-    
 }

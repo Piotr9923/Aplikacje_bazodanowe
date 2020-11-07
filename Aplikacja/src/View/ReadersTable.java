@@ -1,13 +1,13 @@
 package View;
 
-import models.MReaders;
+import mdata.MReaders;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import iteams.Reader;
+import model.Reader;
 
 public class ReadersTable extends JPanel {
 

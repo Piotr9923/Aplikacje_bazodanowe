@@ -1,9 +1,9 @@
 
-package models;
+package mdata;
 
 import SQL.SQLConnector;
-import iteams.Author;
-import iteams.Book;
+import model.Author;
+import model.Book;
 import java.util.ArrayList;
 
 

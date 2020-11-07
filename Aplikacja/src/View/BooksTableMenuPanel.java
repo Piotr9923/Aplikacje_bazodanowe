@@ -12,6 +12,7 @@ public class BooksTableMenuPanel extends JPanel {
 
         this.setSize(200, 700);
         this.setLayout(null);
+        
         add = new JButton("Dodaj");
         add.setBounds(50, 50, 100, 40);
         add.setBackground(Color.green);

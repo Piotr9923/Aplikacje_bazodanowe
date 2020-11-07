@@ -1,5 +1,5 @@
 
-package iteams;
+package model;
 
 
 public class Author {

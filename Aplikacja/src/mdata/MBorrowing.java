@@ -1,8 +1,8 @@
-package models;
+package mdata;
 
 import SQL.SQLConnector;
-import iteams.Book;
-import iteams.Borrowing;
+import model.Book;
+import model.Borrowing;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

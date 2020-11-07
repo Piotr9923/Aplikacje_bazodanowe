@@ -1,13 +1,13 @@
 package View;
 
-import iteams.Book;
+import model.Book;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import models.MBooks;
+import mdata.MBooks;
 
 public class BooksTable extends JPanel{
 
@@ -22,8 +22,6 @@ public class BooksTable extends JPanel{
 
         this.setSize(1100, 600);
         this.setLayout(null);
-
-        this.setBackground(Color.green);
         
         String[]headers={"ID","Tytuł","Autor","Gatunek","Status książki"};
         tableModel = new DefaultTableModel(headers, 0);

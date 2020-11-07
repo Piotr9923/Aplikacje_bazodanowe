@@ -1,5 +1,5 @@
 
-package iteams;
+package model;
 
 import java.util.Date;
 
