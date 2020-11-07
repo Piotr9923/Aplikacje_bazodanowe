@@ -41,6 +41,10 @@ public class ReadersTableControler {
         controler.getView().getReadersMenu().getUsun().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
+                
+                table.removeReader();
+                mReaders.updateReadersList();
+                table.updateTable();
   
             }      
         });

@@ -16,7 +16,7 @@ public class Adress {
     }
     
     public String adressToString(){
-        return town+" ul. "+ street+" "+number;
+        return code+" "+town+" ul. "+ street+" "+number;
     }
 
     public String getCode() {

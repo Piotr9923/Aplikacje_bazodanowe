@@ -2,6 +2,9 @@ package View;
 
 import iteams.Borrowing;
 import java.awt.Color;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,7 +28,7 @@ public class BorrowingsTable extends JPanel {
 
         this.setBackground(Color.green);
 
-        String[] headers = {"ID", "ID wypożyczającego", "Wypożyczający", "ID książki", "Tytuł książki", "Data wypożyczenia"};
+        String[] headers = {"ID wypożyczającego", "Wypożyczający", "ID książki", "Tytuł książki", "Data wypożyczenia"};
         tableModel = new DefaultTableModel(headers, 0);
 
         table = new JTable(tableModel);
@@ -55,7 +58,7 @@ public class BorrowingsTable extends JPanel {
 
             Borrowing borrwoing = data.getBorrowings().get(i);
 
-            Object[] objs = {borrwoing.getId(), borrwoing.getReaderId(), (borrwoing.getReaderFirstname() + " " + borrwoing.getReaderLastname()),
+            Object[] objs = {borrwoing.getReaderId(), (borrwoing.getReaderFirstname() + " " + borrwoing.getReaderLastname()),
                 borrwoing.getBookId(), borrwoing.getTitle(), borrwoing.getBorrowingDate()
             };
             tableModel.addRow(objs);
@@ -65,10 +68,14 @@ public class BorrowingsTable extends JPanel {
 
     public void returnBook() {
         if (table.getSelectedRow() >= 0) {
-            int bookId = (int) table.getValueAt(table.getSelectedRow(),3);
-            int borrowingId = (int) table.getValueAt(table.getSelectedRow(), 0);
-            
-            data.returnBook(borrowingId, bookId);
+            try {
+                int bookId = (int) table.getValueAt(table.getSelectedRow(), 2);
+                int borrowingId = data.getBorrowings().get(table.getSelectedRow()).getId();
+                
+                data.returnBook(borrowingId, bookId);
+            } catch (ParseException ex) {
+                Logger.getLogger(BorrowingsTable.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

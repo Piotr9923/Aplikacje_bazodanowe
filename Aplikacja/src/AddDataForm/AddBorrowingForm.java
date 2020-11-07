@@ -33,7 +33,7 @@ public class AddBorrowingForm {
 
         frame = new JFrame();
 
-        frame.setTitle("Dodaj wypozyczenie");
+        frame.setTitle("Dodaj wypożyczenie");
         frame.setSize(420, 300);
         frame.setLocationRelativeTo(null);
 
@@ -131,6 +131,12 @@ public class AddBorrowingForm {
 
     }
 
+    private void resetDate() {
+
+        dateTF.setText(LocalDateTime.now().getYear() + "-" + LocalDateTime.now().getMonthValue() + "-" + LocalDateTime.now().getDayOfMonth());
+
+    }
+
     public void show() {
 
         updateComboBox();
@@ -141,6 +147,7 @@ public class AddBorrowingForm {
     public void hide() {
 
         frame.hide();
+        resetDate();
 
     }
 
@@ -151,7 +158,7 @@ public class AddBorrowingForm {
             try {
                 int bookId = books.getAvailableBooks().get(bookBox.getSelectedIndex()).getId();
                 int readerId = readers.getReaders().get(readerBox.getSelectedIndex()).getId();
-                
+
                 data.addNewBorrowing(bookId, readerId, dateTF.getText());
             } catch (ParseException ex) {
                 Logger.getLogger(AddBorrowingForm.class.getName()).log(Level.SEVERE, null, ex);

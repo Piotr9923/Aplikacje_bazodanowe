@@ -57,6 +57,7 @@ public class BorrowingsTableControler {
                 form.addBorrowing();
                 form.hide();
                 mBorrowing.updateBorrowingList();
+                books.updateAvailableBooksList();
                 table.updateTable();
 
             }

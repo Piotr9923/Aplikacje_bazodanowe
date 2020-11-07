@@ -38,6 +38,12 @@ public class BooksTableControler {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
+                table.removeBook();
+                mBooks.updateBooksList();
+                mBooks.updateAvailableBooksList();
+                mBooks.updateAuthorsList();
+                mBooks.updateBookTypesList();
+                table.updateTable();
 
             }
         });
@@ -51,6 +57,7 @@ public class BooksTableControler {
                 mBooks.updateBooksList();
                 mBooks.updateAvailableBooksList();
                 mBooks.updateAuthorsList();
+                mBooks.updateBookTypesList();
                 table.updateTable();
 
             }

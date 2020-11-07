@@ -13,6 +13,7 @@ public class MBooks {
     private ArrayList<Book> books;
     private ArrayList<Book> availableBooks;
     private ArrayList<Author> authors;
+    private ArrayList<String> bookTypes;
     
     public MBooks(){
         
@@ -20,7 +21,7 @@ public class MBooks {
         
         books = new ArrayList();
         availableBooks = new ArrayList();
-        
+        bookTypes = new ArrayList();
         authors = new ArrayList();
         
         sql.connect();
@@ -31,6 +32,7 @@ public class MBooks {
         
         sql.loadAuthorsList(authors);
         
+        sql.getBookTypes(bookTypes);
 
     }
 
@@ -51,6 +53,12 @@ public class MBooks {
     public void updateAuthorsList(){
         authors.removeAll(authors);
         sql.loadAuthorsList(authors);
+    }
+    
+    public void updateBookTypesList(){
+        bookTypes.removeAll(bookTypes);
+        sql.getBookTypes(bookTypes);
+        
     }
 
     public ArrayList<Book> getBooks() {
@@ -75,6 +83,14 @@ public class MBooks {
     public void addNewBook(String[] data, int authorId){
         
       sql.addBook(data[0], authors.get(authorId).getId(), data[1]);
+    }
+    
+    public void deleteBook(int id){
+        
+       if(sql.canBeBookDeleted(id)==true){
+           
+         sql.deleteBook(id);
+       }  
     }
     
 }

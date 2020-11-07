@@ -22,7 +22,7 @@ public class Reader {
     
     
     public String getReader(){
-          return ""+id+" - "+firstname+" "+lastname;
+          return ""+id+" - "+lastname+" "+firstname;
     }
     
     

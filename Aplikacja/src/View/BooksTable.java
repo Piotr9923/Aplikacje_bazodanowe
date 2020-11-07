@@ -68,20 +68,13 @@ public class BooksTable extends JPanel{
     public void setData(MBooks data){
         this.data = data;
     }
-
-    public void addRow() {
-
-        Object[] objs = {1, "FCBARCA", 35};
-
-        tableModel.addRow(objs);
-    }
-
-    public void removeRow() {
-         System.out.println(  table.getValueAt(table.getSelectedRow(), 0));
-        if (table.getSelectedRow() >= 0) {
-            tableModel.removeRow(table.getSelectedRow());
-        }
-     
+ 
+    public void removeBook(){
+        
+       int bookId = (int) table.getValueAt(table.getSelectedRow(), 0);
+       
+       data.deleteBook(bookId);
+        
     }
 
 

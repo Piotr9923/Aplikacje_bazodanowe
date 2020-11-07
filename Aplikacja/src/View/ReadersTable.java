@@ -63,6 +63,13 @@ public class ReadersTable extends JPanel {
         }
 
     }
+    
+    public void removeReader(){
+        
+        int readerId = (int) table.getValueAt(table.getSelectedRow(), 0);
+       
+       data.deleteReader(readerId);
+    }
 
     public void setData(MReaders data) {
         this.data = data;
