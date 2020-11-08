@@ -32,19 +32,20 @@ public class RaportsControler {
 
         rankingData = new ArrayList();
         tooLongDate = new ArrayList();
-        
+
         sql = new SQLConnector();
         sql.connect();
-        
+
         sql.getRanking(rankingData);
         sql.getBorrowingTooLongTime(tooLongDate);
 
-        pdfCreator = new PDFCreator(rankingData,tooLongDate);
-        
+        pdfCreator = new PDFCreator(rankingData, tooLongDate);
 
         window.getReadersRanking().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                
+                updateRanking();
 
                 fileChooser.showFileChooser();
                 if (fileChooser.isChoosen() == true) {
@@ -58,6 +59,8 @@ public class RaportsControler {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
+                updateTooLong();
+
                 fileChooser.showFileChooser();
                 if (fileChooser.isChoosen() == true) {
                     pdfCreator.createTooLong(fileChooser.getPath());
@@ -67,4 +70,19 @@ public class RaportsControler {
         });
 
     }
+
+    private void updateRanking() {
+
+        rankingData.removeAll(rankingData);
+        sql.getRanking(rankingData);
+
+    }
+
+    private void updateTooLong() {
+
+        tooLongDate.removeAll(tooLongDate);
+        sql.getBorrowingTooLongTime(tooLongDate);
+
+    }
+
 }
