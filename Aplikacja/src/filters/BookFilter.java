@@ -25,6 +25,8 @@ public class BookFilter extends JPanel {
         this.setLayout(null);
 
         this.setVisible(true);
+        
+        this.setBackground(Color.LIGHT_GRAY);
 
         initLabels();
         initTF();
@@ -36,7 +38,7 @@ public class BookFilter extends JPanel {
     private void initButton(){
         
         search = new JButton("Szukaj");
-        search.setBounds(900, 10, 100, 30);
+        search.setBounds(920, 10, 100, 30);
         this.add(search);
     }
 
@@ -81,7 +83,7 @@ public class BookFilter extends JPanel {
         typeBox.addItem("");
 
         availableBox = new JComboBox();
-        availableBox.setBounds(760, 15, 100, 20);
+        availableBox.setBounds(760, 15, 130, 20);
         this.add(availableBox);
         
         availableBox.addItem("");

@@ -47,6 +47,7 @@ public class MainView {
         frame.getContentPane().setLayout(null);
 
         frame.add(menu);
+        
 
         initTableMenu();
         

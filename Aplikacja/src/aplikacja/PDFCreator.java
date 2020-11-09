@@ -133,7 +133,7 @@ public class PDFCreator {
             document.addTitle("Zbyt długie przetrzymywanie książek");
             Paragraph paragraph = new Paragraph();
 
-            paragraph.add(new Paragraph("List osób zbyt długo przetrzymujących książki na dzień " + date, titleFont));
+            paragraph.add(new Paragraph("Lista osób zbyt długo przetrzymujących książki na dzień " + date, titleFont));
 
             addEmptyLine(paragraph, 2);
             paragraph.setFont(textFont);
@@ -169,7 +169,7 @@ public class PDFCreator {
             table.addCell(c1);
             table.setHeaderRows(1);
 
-            c1 = new PdfPCell(new Phrase("Czas wypożyczenia", textBoldFont));
+            c1 = new PdfPCell(new Phrase("Czas wypożyczenia [dni]", textBoldFont));
             c1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(c1);
             table.setHeaderRows(1);

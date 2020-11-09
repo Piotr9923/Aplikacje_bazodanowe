@@ -23,6 +23,8 @@ public class ReaderFilter extends JPanel {
         this.setLayout(null);
 
         this.setVisible(true);
+        
+        this.setBackground(Color.LIGHT_GRAY);
 
         initLabels();
         initTF();
