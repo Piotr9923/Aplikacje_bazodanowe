@@ -189,7 +189,7 @@ public class MainView {
 
         actualMenu.setVisible(false);
         frame.remove(actualMenu);
-        actualMenu = readerFilter;
+        actualMenu = readersMenu;
         frame.add(actualMenu);
         actualMenu.setVisible(true);
 
@@ -201,9 +201,9 @@ public class MainView {
         
         actualFilter.setVisible(false);
         frame.remove(actualFilter);
-//        actualFilter = bookFilter;
-//        frame.add(actualFilter);
-//        actualFilter.setVisible(true);
+        actualFilter = readerFilter;
+        frame.add(actualFilter);
+        actualFilter.setVisible(true);
 
     }
 
