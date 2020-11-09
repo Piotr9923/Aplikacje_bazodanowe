@@ -22,6 +22,8 @@ public class RaportsControler {
     private ArrayList<RankingPerson> rankingData;
     private ArrayList<TooLongRecord> tooLongDate;
     private SQLConnector sql;
+    
+    
 
     public RaportsControler(MainControler controler) {
 

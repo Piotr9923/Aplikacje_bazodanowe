@@ -5,6 +5,7 @@ import AddDataForm.AddReaderForm;
 import mdata.MReaders;
 import View.ReadersTable;
 import View.ReadersTableMenuPanel;
+import filters.ReaderFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,6 +18,8 @@ public class ReadersTableControler {
     private MReaders mReaders;
     private AddReaderForm form;
     
+    private ReaderFilter readerFilter;
+    
     
     public ReadersTableControler(MainControler controler){
                 
@@ -28,6 +31,18 @@ public class ReadersTableControler {
         table.updateTable();
         
         form = new AddReaderForm(mReaders);
+        
+        readerFilter = controler.getView().getReaderFilter();
+        readerFilter.setData(mReaders);
+        
+        controler.getView().getReaderFilter().getSearch().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+                readerFilter.filterReaderList();
+                table.updateTable();
+            }
+        });
 
         
         controler.getView().getReadersMenu().getDodaj().addActionListener(new ActionListener(){

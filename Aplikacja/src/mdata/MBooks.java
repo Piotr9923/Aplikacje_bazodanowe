@@ -35,7 +35,7 @@ public class MBooks {
         sql.getBookTypes(bookTypes);
 
     }
-
+    
     public ArrayList<Book> getAvailableBooks() {
         return availableBooks;
     }
@@ -68,6 +68,19 @@ public class MBooks {
     public ArrayList<Author> getAuthors() {
         return authors;
     }
+
+    public ArrayList<String> getBookTypes() {
+        return bookTypes;
+    }
+    
+    public void filter(String title, String author, String type, String available){
+        
+        books.removeAll(books);
+        
+        sql.getFilteredBooks(books, title,author, type, available);    
+    }
+    
+    
     
     
     

@@ -45,5 +45,12 @@ public class MReaders {
             sql.deleteReader(id);
         }
     }
+    
+    public void filter(String name, String surname, String city){
+        
+        readers.removeAll(readers);
+
+        sql.getFilteredReaders(readers, name, surname, city);    
+    }
 
 }

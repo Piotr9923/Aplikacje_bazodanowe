@@ -167,7 +167,7 @@ public class SQLConnector {
 
         try {
             statement.execute("INSERT INTO `Ksiazki` (`id`, `tytul`, `id_autora`, `gatunek`, `dostepna`) "
-                    + "VALUES (NULL, N'" + title + "', '" + authorId + "', '" + type + "', '1')");
+                    + "VALUES (NULL,'" + title + "', '" + authorId + "', '" + type + "', '1')");
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -327,6 +327,48 @@ public class SQLConnector {
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void getFilteredBooks(ArrayList<Book> books, String title,String author, String type, String available){
+        
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM `Ksiazki` Inner JOIN Autorzy ON Ksiazki.id_autora=Autorzy.id "
+                    + "WHERE Ksiazki.tytul Like '%"+title+"%' AND"
+                            + " CONCAT(Autorzy.imie,\" \", Autorzy.nazwisko) LIKE '%"+author+"%' AND "
+                                    + "Ksiazki.gatunek LIKE '%"+type+"%' AND "
+                                            + "Ksiazki.dostepna Like '%"+available+"%' ORDER BY Ksiazki.tytul");
+
+            while (resultSet.next()) {
+
+                books.add(new Book(resultSet.getInt("id"), resultSet.getString("tytul"), (resultSet.getString("imie") + " " + resultSet.getString("nazwisko")), resultSet.getString("gatunek"), resultSet.getBoolean("dostepna")));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
+    public void getFilteredReaders(ArrayList<Reader> readers, String name, String surname, String city){
+        
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM Czytelnicy JOIN Adresy ON Czytelnicy.id_adresu = Adresy.id "
+                    + "WHERE Czytelnicy.imie LIKE '%"+name+"%' AND Czytelnicy.nazwisko LIKE '%"+surname+"%' AND "
+                            + "Adresy.miejscowosc LIKE '%"+city+"%' ORDER BY Czytelnicy.nazwisko, Czytelnicy.imie");
+
+            while (resultSet.next()) {
+
+                readers.add(new Reader(resultSet.getInt("id"),
+                        resultSet.getString("imie"), resultSet.getString("nazwisko"),
+                        resultSet.getString("nr_telefonu"),
+                        resultSet.getInt("rok_urodzenia"),
+                        new Adress(resultSet.getString("kod"), resultSet.getString("miejscowosc"), resultSet.getString("ulica"), resultSet.getInt("nr_domu"))));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }

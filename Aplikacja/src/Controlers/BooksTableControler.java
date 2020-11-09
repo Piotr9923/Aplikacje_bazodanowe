@@ -3,6 +3,7 @@ package Controlers;
 import AddDataForm.AddBookForm;
 import View.BooksTableMenuPanel;
 import View.BooksTable;
+import filters.BookFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import mdata.MBooks;
@@ -13,6 +14,8 @@ public class BooksTableControler {
     private BooksTable table;
     private MBooks mBooks;
     private AddBookForm form;
+    
+    private BookFilter filter;
 
     public BooksTableControler(MainControler controler) {
 
@@ -24,6 +27,19 @@ public class BooksTableControler {
         table.updateTable();
 
         form = new AddBookForm(mBooks);
+        
+        filter = controler.getView().getBookFilter();
+        
+        filter.setData(mBooks);
+        
+        controler.getView().getBookFilter().getSearch().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+                filter.filterBookList();
+                table.updateTable();
+            }
+        });
 
         controler.getView().getBooksMenu().getAddButton().addActionListener(new ActionListener() {
             @Override
