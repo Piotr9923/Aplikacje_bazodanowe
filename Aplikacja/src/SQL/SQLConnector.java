@@ -22,8 +22,8 @@ public class SQLConnector {
     public void connect() {
 
         try {
+//            connection = DriverManager.getConnection("jdbc:mysql://sql7.freesqldatabase.com/sql7375851?useUnicode=yes&characterEncoding=UTF-8", "sql7375851", "yV77JwPjZJ");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Biblioteka?useUnicode=yes&characterEncoding=UTF-8", "root", "haslo");
-
             statement = connection.createStatement();
 
         } catch (Exception e) {
@@ -244,13 +244,13 @@ public class SQLConnector {
 
     public void getBorrowingTooLongTime(ArrayList<TooLongRecord> tooLongData) {
 
-        String date = (LocalDateTime.now().getYear()+ "-" + LocalDateTime.now().getMonthValue() + "-" + LocalDateTime.now().getDayOfMonth());
+        String date = (LocalDateTime.now().getYear() + "-" + LocalDateTime.now().getMonthValue() + "-" + LocalDateTime.now().getDayOfMonth());
 
         try {
-            resultSet = statement.executeQuery("SELECT Wypozyczenia.id_czytelnika,Czytelnicy.imie, Czytelnicy.nazwisko, Wypozyczenia.id_ksiazki, Ksiazki.tytul, Wypozyczenia.data_wypozyczenia, DATEDIFF(\""+date+"\",Wypozyczenia.data_wypozyczenia) as czas\n"
+            resultSet = statement.executeQuery("SELECT Wypozyczenia.id_czytelnika,Czytelnicy.imie, Czytelnicy.nazwisko, Wypozyczenia.id_ksiazki, Ksiazki.tytul, Wypozyczenia.data_wypozyczenia, DATEDIFF(\"" + date + "\",Wypozyczenia.data_wypozyczenia) as czas\n"
                     + " FROM Wypozyczenia JOIN Czytelnicy ON Czytelnicy.id=Wypozyczenia.id_czytelnika\n"
                     + " JOIN Ksiazki ON Wypozyczenia.id_ksiazki=Ksiazki.id"
-                    + " WHERE Wypozyczenia.data_zwrotu IS NULL AND DATEDIFF(\""+date+"\",Wypozyczenia.data_wypozyczenia)>14 ORDER BY Wypozyczenia.data_wypozyczenia");
+                    + " WHERE Wypozyczenia.data_zwrotu IS NULL AND DATEDIFF(\"" + date + "\",Wypozyczenia.data_wypozyczenia)>14 ORDER BY Wypozyczenia.data_wypozyczenia");
 
             while (resultSet.next()) {
                 tooLongData.add(new TooLongRecord(resultSet.getInt("id_czytelnika"),
@@ -328,15 +328,15 @@ public class SQLConnector {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void getFilteredBooks(ArrayList<Book> books, String title,String author, String type, String available){
-        
+
+    public void getFilteredBooks(ArrayList<Book> books, String title, String author, String type, String available) {
+
         try {
             resultSet = statement.executeQuery("SELECT * FROM `Ksiazki` Inner JOIN Autorzy ON Ksiazki.id_autora=Autorzy.id "
-                    + "WHERE Ksiazki.tytul Like '%"+title+"%' AND"
-                            + " CONCAT(Autorzy.imie,\" \", Autorzy.nazwisko) LIKE '%"+author+"%' AND "
-                                    + "Ksiazki.gatunek LIKE '%"+type+"%' AND "
-                                            + "Ksiazki.dostepna Like '%"+available+"%' ORDER BY Ksiazki.tytul");
+                    + "WHERE Ksiazki.tytul Like '%" + title + "%' AND"
+                    + " CONCAT(Autorzy.imie,\" \", Autorzy.nazwisko) LIKE '%" + author + "%' AND "
+                    + "Ksiazki.gatunek LIKE '%" + type + "%' AND "
+                    + "Ksiazki.dostepna Like '%" + available + "%' ORDER BY Ksiazki.tytul");
 
             while (resultSet.next()) {
 
@@ -345,15 +345,15 @@ public class SQLConnector {
 
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
-    
-    public void getFilteredReaders(ArrayList<Reader> readers, String name, String surname, String city){
-        
+
+    public void getFilteredReaders(ArrayList<Reader> readers, String name, String surname, String city) {
+
         try {
             resultSet = statement.executeQuery("SELECT * FROM Czytelnicy JOIN Adresy ON Czytelnicy.id_adresu = Adresy.id "
-                    + "WHERE Czytelnicy.imie LIKE '%"+name+"%' AND Czytelnicy.nazwisko LIKE '%"+surname+"%' AND "
-                            + "Adresy.miejscowosc LIKE '%"+city+"%' ORDER BY Czytelnicy.nazwisko, Czytelnicy.imie");
+                    + "WHERE Czytelnicy.imie LIKE '%" + name + "%' AND Czytelnicy.nazwisko LIKE '%" + surname + "%' AND "
+                    + "Adresy.miejscowosc LIKE '%" + city + "%' ORDER BY Czytelnicy.nazwisko, Czytelnicy.imie");
 
             while (resultSet.next()) {
 
@@ -369,6 +369,28 @@ public class SQLConnector {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    
+    public void getFilteredBorrowing(ArrayList<Borrowing> borrowing, String name, String title) {
+
+        
+        
+        try {
+            resultSet = statement.executeQuery("SELECT Wypozyczenia.*, Ksiazki.tytul, Czytelnicy.imie, Czytelnicy.nazwisko FROM Wypozyczenia INNER JOIN Ksiazki ON Ksiazki.id = Wypozyczenia.id_ksiazki INNER JOIN Czytelnicy ON Czytelnicy.id=Wypozyczenia.id_czytelnika "
+                    + "WHERE Wypozyczenia.data_zwrotu IS NULL AND Ksiazki.tytul Like '%" + title + "%' AND "+
+                    "CONCAT(Czytelnicy.imie,\" \", Czytelnicy.nazwisko) LIKE '%" + name + "%'  ORDER BY Wypozyczenia.data_wypozyczenia");
+
+            while (resultSet.next()) {
+
+                borrowing.add(new Borrowing(resultSet.getInt("id"), resultSet.getInt("id_czytelnika"),
+                        resultSet.getString("imie"), resultSet.getString("nazwisko"), resultSet.getInt("id_ksiazki"),
+                        resultSet.getString("tytul"), resultSet.getDate("data_wypozyczenia")));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

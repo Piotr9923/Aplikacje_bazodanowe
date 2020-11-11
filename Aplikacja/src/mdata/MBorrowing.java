@@ -56,5 +56,12 @@ public class MBorrowing {
         sql.returnBook(borrowingId, bookId, returnDate);
         
     }
+    
+     public void filter(String name, String title){
+        
+        borrowing.removeAll(borrowing);
+        
+        sql.getFilteredBorrowing(borrowing,name,title);    
+    }
 
 }

@@ -79,11 +79,7 @@ public class MBooks {
         
         sql.getFilteredBooks(books, title,author, type, available);    
     }
-    
-    
-    
-    
-    
+     
     public void addNewBook(String[] data){
         
        sql.addAuthor(data[1],data[2]);

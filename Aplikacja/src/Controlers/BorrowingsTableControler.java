@@ -3,6 +3,7 @@ package Controlers;
 import AddDataForm.AddBorrowingForm;
 import View.BorrowingsTable;
 import View.BorrowingsTableMenuPanel;
+import filters.BorrowingFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import mdata.MBooks;
@@ -17,6 +18,7 @@ public class BorrowingsTableControler {
     private MBooks books;
     private MReaders readers;
     private AddBorrowingForm form;
+    private BorrowingFilter filter;
 
     public BorrowingsTableControler(MainControler controler) {
 
@@ -30,6 +32,19 @@ public class BorrowingsTableControler {
         table.updateTable();
 
         form = new AddBorrowingForm(mBorrowing, books, readers);
+        
+        filter = controler.getView().getBorrowingFilter();
+        
+        filter.setData(mBorrowing);
+        
+        controler.getView().getBorrowingFilter().getSearch().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+                filter.filterBorrowingBook();
+                table.updateTable();
+            }
+        });
 
         controler.getView().getBorrowingsMenu().getAddButton().addActionListener(new ActionListener() {
             @Override

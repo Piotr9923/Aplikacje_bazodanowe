@@ -1,6 +1,7 @@
 package View;
 
 import filters.BookFilter;
+import filters.BorrowingFilter;
 import filters.ReaderFilter;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -21,9 +22,10 @@ public class MainView {
     private BooksTable books;
     private ReadersTable readers;
     private BorrowingsTable borrowings;
-    
+
     private BookFilter bookFilter;
     private ReaderFilter readerFilter;
+    private BorrowingFilter borrowingFilter;
 
     private JPanel actualTable, actualMenu, actualFilter;
 
@@ -47,28 +49,29 @@ public class MainView {
         frame.getContentPane().setLayout(null);
 
         frame.add(menu);
-        
 
         initTableMenu();
-        
+
         initFilters();
-        
-        initTable();   
+
+        initTable();
 
     }
-    
-    private void initFilters(){
-        
+
+    private void initFilters() {
+
         bookFilter = new BookFilter();
         bookFilter.setLocation(0, 60);
         actualFilter = bookFilter;
         frame.add(actualFilter);
         bookFilter.setVisible(true);
-        
-        
+
         readerFilter = new ReaderFilter();
         readerFilter.setLocation(0, 60);
-        
+
+        borrowingFilter = new BorrowingFilter();
+        borrowingFilter.setLocation(0, 60);
+
     }
 
     private void initTable() {
@@ -110,21 +113,22 @@ public class MainView {
 
     }
 
+    public BorrowingFilter getBorrowingFilter() {
+        return borrowingFilter;
+    }
+
     public ReaderFilter getReaderFilter() {
         return readerFilter;
     }
-    
 
     public BookFilter getBookFilter() {
         return bookFilter;
     }
-    
 
     public JFrame getFrame() {
         return frame;
     }
 
-    
     public RaportsWindow getRaportsWindow() {
         return raportsWindow;
     }
@@ -177,7 +181,7 @@ public class MainView {
         actualTable = books;
         frame.add(books);
         actualTable.setVisible(true);
-        
+
         actualFilter.setVisible(false);
         frame.remove(actualFilter);
         actualFilter = bookFilter;
@@ -199,7 +203,7 @@ public class MainView {
         actualTable = readers;
         frame.add(readers);
         actualTable.setVisible(true);
-        
+
         actualFilter.setVisible(false);
         frame.remove(actualFilter);
         actualFilter = readerFilter;
@@ -221,10 +225,13 @@ public class MainView {
         actualTable = borrowings;
         frame.add(borrowings);
         actualTable.setVisible(true);
-        
-         actualFilter.setVisible(false);
+
+        actualFilter.setVisible(false);
         frame.remove(actualFilter);
-       
+        actualFilter = borrowingFilter;
+        frame.add(actualFilter);
+        actualFilter.setVisible(true);
+
     }
 
     public void showRaportWindow() {
@@ -240,10 +247,10 @@ public class MainView {
         actualTable = raportsWindow;
         frame.add(raportsWindow);
         actualTable.setVisible(true);
-        
-         actualFilter.setVisible(false);
+
+        actualFilter.setVisible(false);
         frame.remove(actualFilter);
-      
+
     }
 
 }
