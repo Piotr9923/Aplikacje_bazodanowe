@@ -3,6 +3,7 @@ package Controlers;
 import AddDataForm.AddBorrowingForm;
 import View.BorrowingsTable;
 import View.BorrowingsTableMenuPanel;
+import View.BorrowingsView;
 import filters.BorrowingFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +11,7 @@ import mdata.MBooks;
 import mdata.MBorrowing;
 import mdata.MReaders;
 
-public class BorrowingsTableControler {
+public class BorrowingTableControler {
 
     private BorrowingsTableMenuPanel panel;
     private BorrowingsTable table;
@@ -19,25 +20,28 @@ public class BorrowingsTableControler {
     private MReaders readers;
     private AddBorrowingForm form;
     private BorrowingFilter filter;
+    private BorrowingsView view;
 
-    public BorrowingsTableControler(MainControler controler) {
+    public BorrowingTableControler(MainControler controler) {
+        
+        view = controler.getView().getBorrowingsView();
 
         books = controler.getBooksControler().getmBooks();
         readers = controler.getReadersControler().getmReaders();
         mBorrowing = new MBorrowing();
 
-        table = controler.getView().getBorrowings();
+        table = view.getTable();
         table.setData(mBorrowing);
 
         table.updateTable();
 
         form = new AddBorrowingForm(mBorrowing, books, readers);
         
-        filter = controler.getView().getBorrowingFilter();
+        filter = view.getFilter();
         
         filter.setData(mBorrowing);
         
-        controler.getView().getBorrowingFilter().getSearch().addActionListener(new ActionListener() {
+        view.getFilter().getSearch().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
@@ -46,7 +50,7 @@ public class BorrowingsTableControler {
             }
         });
 
-        controler.getView().getBorrowingsMenu().getAddButton().addActionListener(new ActionListener() {
+        view.getMenuPanel().getAddButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
@@ -55,7 +59,7 @@ public class BorrowingsTableControler {
             }
         });
 
-        controler.getView().getBorrowingsMenu().getReturnButton().addActionListener(new ActionListener() {
+        view.getMenuPanel().getReturnButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 

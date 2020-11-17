@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/mdata/MBooks.java</file>
             <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/filters/BorrowingFilter.java</file>
+            <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/AddDataForm/AddBorrowingForm.java</file>
             <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/mdata/MBorrowing.java</file>
             <file>file:/home/piotr/Pulpit/aplikacje%20bazodanowe/Aplikacja/src/SQL/SQLConnector.java</file>
         </group>

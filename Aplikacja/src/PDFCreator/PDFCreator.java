@@ -1,4 +1,4 @@
-package aplikacja;
+package PDFCreator;
 
 import java.io.FileOutputStream;
 import java.util.Date;

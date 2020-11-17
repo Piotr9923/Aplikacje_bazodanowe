@@ -5,6 +5,7 @@ import AddDataForm.AddReaderForm;
 import mdata.MReaders;
 import View.ReadersTable;
 import View.ReadersTableMenuPanel;
+import View.ReadersView;
 import filters.ReaderFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,22 +21,26 @@ public class ReadersTableControler {
     
     private ReaderFilter readerFilter;
     
+    private ReadersView view;
+    
     
     public ReadersTableControler(MainControler controler){
                 
         mReaders = new MReaders();
+        
+        view = controler.getView().getReadersView();
      
-        table=controler.getView().getReaders();
+        table = view.getTable();
         table.setData(mReaders);
         
         table.updateTable();
         
         form = new AddReaderForm(mReaders);
         
-        readerFilter = controler.getView().getReaderFilter();
+        readerFilter = view.getFilter();
         readerFilter.setData(mReaders);
         
-        controler.getView().getReaderFilter().getSearch().addActionListener(new ActionListener() {
+        view.getFilter().getSearch().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
@@ -45,7 +50,7 @@ public class ReadersTableControler {
         });
 
         
-        controler.getView().getReadersMenu().getDodaj().addActionListener(new ActionListener(){
+        view.getMenuPanel().getAddButton().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
                 form.show();
@@ -53,7 +58,7 @@ public class ReadersTableControler {
             }      
         });
         
-        controler.getView().getReadersMenu().getUsun().addActionListener(new ActionListener(){
+        view.getMenuPanel().getRemoveButton().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
                 

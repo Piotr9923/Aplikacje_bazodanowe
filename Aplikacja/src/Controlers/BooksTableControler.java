@@ -3,6 +3,7 @@ package Controlers;
 import AddDataForm.AddBookForm;
 import View.BooksTableMenuPanel;
 import View.BooksTable;
+import View.BooksView;
 import filters.BookFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,25 +15,29 @@ public class BooksTableControler {
     private BooksTable table;
     private MBooks mBooks;
     private AddBookForm form;
-    
     private BookFilter filter;
+    
+        private BooksView view;
+
 
     public BooksTableControler(MainControler controler) {
 
         mBooks = new MBooks();
 
-        table = controler.getView().getBooks();
+        view = controler.getView().getBooksView();
+        
+        table = view.getTable();
         table.setData(mBooks);
 
         table.updateTable();
 
         form = new AddBookForm(mBooks);
         
-        filter = controler.getView().getBookFilter();
+        filter = view.getFilter();
         
         filter.setData(mBooks);
         
-        controler.getView().getBookFilter().getSearch().addActionListener(new ActionListener() {
+        view.getFilter().getSearch().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
@@ -41,7 +46,7 @@ public class BooksTableControler {
             }
         });
 
-        controler.getView().getBooksMenu().getAddButton().addActionListener(new ActionListener() {
+        view.getMenuPanel().getAddButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
@@ -50,7 +55,7 @@ public class BooksTableControler {
             }
         });
 
-        controler.getView().getBooksMenu().getRemoveButton().addActionListener(new ActionListener() {
+        view.getMenuPanel().getRemoveButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 

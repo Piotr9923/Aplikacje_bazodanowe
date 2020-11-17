@@ -1,7 +1,7 @@
 package Controlers;
 
 import View.MainView;
-import aplikacja.PDFCreator;
+import PDFCreator.PDFCreator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,7 +11,7 @@ public class MainControler {
 
     private BooksTableControler booksControler;
     private ReadersTableControler readersControler;
-    private BorrowingsTableControler borrowingControler;
+    private BorrowingTableControler borrowingControler;
     private RaportsControler raportsControler;
     private PDFCreator pdf;
     
@@ -22,7 +22,7 @@ public class MainControler {
         
         booksControler = new BooksTableControler(this);
         readersControler = new ReadersTableControler(this);
-        borrowingControler = new BorrowingsTableControler(this);
+        borrowingControler = new BorrowingTableControler(this);
         raportsControler = new RaportsControler(this);
         
         setButtonActions();

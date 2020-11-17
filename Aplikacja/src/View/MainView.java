@@ -13,19 +13,10 @@ public class MainView {
     private JFrame frame;
     private MainMenuPanel menu;
 
-    private BooksTableMenuPanel booksMenu;
-    private ReadersTableMenuPanel readersMenu;
-    private BorrowingsTableMenuPanel borrowingsMenu;
-    private RaportsMenuPanel raportsMenu;
-
-    private RaportsWindow raportsWindow;
-    private BooksTable books;
-    private ReadersTable readers;
-    private BorrowingsTable borrowings;
-
-    private BookFilter bookFilter;
-    private ReaderFilter readerFilter;
-    private BorrowingFilter borrowingFilter;
+    private BooksView booksView;
+    private ReadersView readersView;
+    private BorrowingsView borrowingsView;
+    private RaportsView raportsView;
 
     private JPanel actualTable, actualMenu, actualFilter;
 
@@ -49,122 +40,53 @@ public class MainView {
         frame.getContentPane().setLayout(null);
 
         frame.add(menu);
-
-        initTableMenu();
-
-        initFilters();
-
-        initTable();
+        
+        initViews();
+        
+        showBookWindow();
 
     }
 
-    private void initFilters() {
+    private void initViews(){
+        
+             
+        booksView = new BooksView();
+        readersView = new ReadersView();
+        borrowingsView = new BorrowingsView();
+        raportsView = new RaportsView();
+        
+        actualTable = booksView.getTable();
+        actualMenu = booksView.getMenuPanel();
+        actualFilter = booksView.getFilter();
+        frame.add(booksView.getFilter());
+        frame.add(booksView.getMenuPanel());
+        frame.add(booksView.getTable());
+        
+    }
+    
 
-        bookFilter = new BookFilter();
-        bookFilter.setLocation(0, 60);
-        actualFilter = bookFilter;
-        frame.add(actualFilter);
-        bookFilter.setVisible(true);
-
-        readerFilter = new ReaderFilter();
-        readerFilter.setLocation(0, 60);
-
-        borrowingFilter = new BorrowingFilter();
-        borrowingFilter.setLocation(0, 60);
-
+     public BooksView getBooksView(){
+        return booksView;
     }
 
-    private void initTable() {
-
-        raportsWindow = new RaportsWindow();
-        raportsWindow.setLocation(0, 120);
-
-        books = new BooksTable();
-        books.setLocation(0, 120);
-
-        readers = new ReadersTable();
-        readers.setLocation(0, 120);
-
-        borrowings = new BorrowingsTable();
-        borrowings.setLocation(0, 120);
-
-        actualTable = books;
-
-        frame.add(books);
+    public ReadersView getReadersView() {
+        return readersView;
     }
 
-    private void initTableMenu() {
-
-        raportsMenu = new RaportsMenuPanel();
-        raportsMenu.setLocation(1100, 60);
-
-        booksMenu = new BooksTableMenuPanel();
-        booksMenu.setLocation(1100, 60);
-
-        actualMenu = booksMenu;
-
-        readersMenu = new ReadersTableMenuPanel();
-        readersMenu.setLocation(1100, 60);
-
-        borrowingsMenu = new BorrowingsTableMenuPanel();
-        borrowingsMenu.setLocation(1100, 60);
-
-        frame.add(actualMenu);
-
+    public BorrowingsView getBorrowingsView() {
+        return borrowingsView;
     }
 
-    public BorrowingFilter getBorrowingFilter() {
-        return borrowingFilter;
+    public RaportsView getRaportsView() {
+        return raportsView;
     }
-
-    public ReaderFilter getReaderFilter() {
-        return readerFilter;
-    }
-
-    public BookFilter getBookFilter() {
-        return bookFilter;
-    }
+    
 
     public JFrame getFrame() {
         return frame;
     }
 
-    public RaportsWindow getRaportsWindow() {
-        return raportsWindow;
-    }
-
-    public BooksTableMenuPanel getBooksMenu() {
-        return booksMenu;
-    }
-
-    public ReadersTableMenuPanel getReadersMenu() {
-        return readersMenu;
-    }
-
-    public BorrowingsTableMenuPanel getBorrowingsMenu() {
-        return borrowingsMenu;
-    }
-
-    public BooksTable getBooks() {
-        return books;
-    }
-
-    public ReadersTable getReaders() {
-        return readers;
-    }
-
-    public BorrowingsTable getBorrowings() {
-        return borrowings;
-    }
-
-    public BooksTableMenuPanel getTableMenuPanel() {
-        return booksMenu;
-    }
-
-    public BooksTable getTable() {
-        return books;
-    }
-
+  
     public MainMenuPanel getMainMenuPanel() {
         return menu;
     }
@@ -172,19 +94,19 @@ public class MainView {
     public void showBookWindow() {
         actualMenu.setVisible(false);
         frame.remove(actualMenu);
-        actualMenu = booksMenu;
+        actualMenu = booksView.getMenuPanel();
         frame.add(actualMenu);
         actualMenu.setVisible(true);
 
         actualTable.setVisible(false);
         frame.remove(actualTable);
-        actualTable = books;
-        frame.add(books);
+        actualTable = booksView.getTable();
+        frame.add(actualTable);
         actualTable.setVisible(true);
 
         actualFilter.setVisible(false);
         frame.remove(actualFilter);
-        actualFilter = bookFilter;
+        actualFilter = booksView.getFilter();
         frame.add(actualFilter);
         actualFilter.setVisible(true);
 
@@ -194,19 +116,19 @@ public class MainView {
 
         actualMenu.setVisible(false);
         frame.remove(actualMenu);
-        actualMenu = readersMenu;
+        actualMenu = readersView.getMenuPanel();
         frame.add(actualMenu);
         actualMenu.setVisible(true);
 
         actualTable.setVisible(false);
         frame.remove(actualTable);
-        actualTable = readers;
-        frame.add(readers);
+        actualTable = readersView.getTable();
+        frame.add(actualTable);
         actualTable.setVisible(true);
 
         actualFilter.setVisible(false);
         frame.remove(actualFilter);
-        actualFilter = readerFilter;
+        actualFilter = readersView.getFilter();
         frame.add(actualFilter);
         actualFilter.setVisible(true);
 
@@ -216,19 +138,19 @@ public class MainView {
 
         actualMenu.setVisible(false);
         frame.remove(actualMenu);
-        actualMenu = borrowingsMenu;
+        actualMenu = borrowingsView.getMenuPanel();
         frame.add(actualMenu);
         actualMenu.setVisible(true);
 
         actualTable.setVisible(false);
         frame.remove(actualTable);
-        actualTable = borrowings;
-        frame.add(borrowings);
+        actualTable = borrowingsView.getTable();
+        frame.add(actualTable);
         actualTable.setVisible(true);
 
         actualFilter.setVisible(false);
         frame.remove(actualFilter);
-        actualFilter = borrowingFilter;
+        actualFilter = borrowingsView.getFilter();
         frame.add(actualFilter);
         actualFilter.setVisible(true);
 
@@ -238,14 +160,14 @@ public class MainView {
 
         actualMenu.setVisible(false);
         frame.remove(actualMenu);
-        actualMenu = raportsMenu;
+        actualMenu = raportsView.getMenuPanel();
         frame.add(actualMenu);
         actualMenu.setVisible(true);
 
         actualTable.setVisible(false);
         frame.remove(actualTable);
-        actualTable = raportsWindow;
-        frame.add(raportsWindow);
+        actualTable = raportsView.getWindow();
+        frame.add(actualTable);
         actualTable.setVisible(true);
 
         actualFilter.setVisible(false);

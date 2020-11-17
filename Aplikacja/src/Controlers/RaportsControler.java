@@ -3,7 +3,8 @@ package Controlers;
 import SQL.SQLConnector;
 import View.MyFileChooser;
 import View.RaportsWindow;
-import aplikacja.PDFCreator;
+import PDFCreator.PDFCreator;
+import View.RaportsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -15,7 +16,6 @@ import model.TooLongRecord;
 public class RaportsControler {
 
     private RaportsWindow window;
-    private MainControler controler;
     private MyFileChooser fileChooser;
     private PDFCreator pdfCreator;
 
@@ -23,15 +23,18 @@ public class RaportsControler {
     private ArrayList<TooLongRecord> tooLongDate;
     private SQLConnector sql;
     
+    private RaportsView view;
     
 
     public RaportsControler(MainControler controler) {
 
-        this.controler = controler;
         fileChooser = new MyFileChooser(controler.getView().getFrame());
+        
+        view = controler.getView().getRaportsView();
 
-        window = controler.getView().getRaportsWindow();
-
+        window = view.getWindow();
+                
+                
         rankingData = new ArrayList();
         tooLongDate = new ArrayList();
 
