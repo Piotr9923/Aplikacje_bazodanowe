@@ -1,17 +1,17 @@
 package mdata;
 
-import SQL.SQLConnector;
+import SQL.SQLReaders;
 import java.util.ArrayList;
 import model.Reader;
 
 public class MReaders {
 
-    private SQLConnector sql;
+    private SQLReaders sql;
     private ArrayList<Reader> readers;
 
     public MReaders() {
 
-        sql = new SQLConnector();
+        sql = new SQLReaders();
 
         readers = new ArrayList();
 

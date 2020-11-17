@@ -1,15 +1,13 @@
 package Controlers;
 
-import SQL.SQLConnector;
 import View.MyFileChooser;
 import View.RaportsWindow;
 import PDFCreator.PDFCreator;
+import SQL.SQLPDF;
 import View.RaportsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.ArrayList;
-import javax.swing.JFileChooser;
 import model.RankingPerson;
 import model.TooLongRecord;
 
@@ -21,7 +19,7 @@ public class RaportsControler {
 
     private ArrayList<RankingPerson> rankingData;
     private ArrayList<TooLongRecord> tooLongDate;
-    private SQLConnector sql;
+    private SQLPDF sql;
     
     private RaportsView view;
     
@@ -38,7 +36,7 @@ public class RaportsControler {
         rankingData = new ArrayList();
         tooLongDate = new ArrayList();
 
-        sql = new SQLConnector();
+        sql = new SQLPDF();
         sql.connect();
 
         sql.getRanking(rankingData);

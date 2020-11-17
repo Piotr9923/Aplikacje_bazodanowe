@@ -1,7 +1,7 @@
 
 package mdata;
 
-import SQL.SQLConnector;
+import SQL.SQLBooks;
 import model.Author;
 import model.Book;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class MBooks {
     
-    private SQLConnector sql;
+    private SQLBooks sql;
     private ArrayList<Book> books;
     private ArrayList<Book> availableBooks;
     private ArrayList<Author> authors;
@@ -17,7 +17,7 @@ public class MBooks {
     
     public MBooks(){
         
-        sql = new SQLConnector();
+        sql = new SQLBooks();
         
         books = new ArrayList();
         availableBooks = new ArrayList();

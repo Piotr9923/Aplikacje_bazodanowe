@@ -1,7 +1,6 @@
 package mdata;
 
-import SQL.SQLConnector;
-import model.Book;
+import SQL.SQLBorrowings;
 import model.Borrowing;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -12,12 +11,12 @@ import java.util.ArrayList;
 
 public class MBorrowing {
 
-    private SQLConnector sql;
+    private SQLBorrowings sql;
     private ArrayList<Borrowing> borrowing;
 
     public MBorrowing() {
 
-        sql = new SQLConnector();
+        sql = new SQLBorrowings();
 
         borrowing = new ArrayList();
 
