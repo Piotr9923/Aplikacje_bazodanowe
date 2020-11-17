@@ -161,6 +161,4 @@ public class SQLBooks extends SQLConnector{
         }
     }
   
-
-    
 }

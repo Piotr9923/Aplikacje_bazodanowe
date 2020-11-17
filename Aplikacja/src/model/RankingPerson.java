@@ -6,13 +6,13 @@ public class RankingPerson {
     private int id;
     private String firstname;
     private String lastname;
-    private int count;
+    private int booksCount;
 
     public RankingPerson(int id, String firstname, String lastname, int count) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.count = count;
+        this.booksCount = count;
     }
 
     public int getId() {
@@ -28,7 +28,7 @@ public class RankingPerson {
     }
 
     public int getCount() {
-        return count;
+        return booksCount;
     }
     
     

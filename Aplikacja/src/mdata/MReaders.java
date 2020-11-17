@@ -40,7 +40,7 @@ public class MReaders {
 
     public void deleteReader(int id) {
 
-        if (sql.canBeRedaerDeleted(id) == true) {
+        if (sql.canBeDeleted(id) == true) {
 
             sql.deleteReader(id);
         }

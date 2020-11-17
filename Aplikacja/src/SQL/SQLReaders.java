@@ -7,14 +7,13 @@ import java.util.logging.Logger;
 import model.Adress;
 import model.Reader;
 
-public class SQLReaders extends SQLConnector{
+public class SQLReaders extends SQLConnector {
 
-    
-    public SQLReaders(){
+    public SQLReaders() {
         super();
     }
-    
-        public void loadReadersList(ArrayList<Reader> readers) {
+
+    public void loadReadersList(ArrayList<Reader> readers) {
 
         try {
             resultSet = statement.executeQuery("SELECT * FROM `Czytelnicy` Inner JOIN Adresy ON Czytelnicy.id_adresu=Adresy.id ORDER BY Czytelnicy.nazwisko, Czytelnicy.imie");
@@ -35,7 +34,7 @@ public class SQLReaders extends SQLConnector{
 
     }
 
-        public int getAdressId(String code, String town, String street, String number) {
+    public int getAdressId(String code, String town, String street, String number) {
 
         int id = -1;
 
@@ -77,7 +76,7 @@ public class SQLReaders extends SQLConnector{
         }
     }
 
-        public boolean canBeRedaerDeleted(int id) {
+    public boolean canBeDeleted(int id) {
 
         boolean canBe = true;
         try {
@@ -91,6 +90,7 @@ public class SQLReaders extends SQLConnector{
         }
         return canBe;
     }
+
     public void getFilteredReaders(ArrayList<Reader> readers, String name, String surname, String city) {
 
         try {
@@ -114,7 +114,7 @@ public class SQLReaders extends SQLConnector{
 
     }
 
-        public void deleteReader(int id) {
+    public void deleteReader(int id) {
 
         try {
             statement.execute("DELETE FROM Czytelnicy WHERE Czytelnicy.id=" + id);
@@ -123,10 +123,4 @@ public class SQLReaders extends SQLConnector{
         }
     }
 
-        
-        
-        
-        
-        
-    
 }

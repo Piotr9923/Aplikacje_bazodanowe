@@ -8,11 +8,11 @@ public class Adress {
     private String street;
     private int number;
 
-    public Adress(String kod, String miejscowosc, String ulica, int nrDomu) {
-        this.code = kod;
-        this.town = miejscowosc;
-        this.street = ulica;
-        this.number = nrDomu;
+    public Adress(String code, String town, String street, int number) {
+        this.code = code;
+        this.town = town;
+        this.street = street;
+        this.number = number;
     }
     
     public String adressToString(){

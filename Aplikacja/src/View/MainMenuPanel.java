@@ -6,59 +6,59 @@ import javax.swing.JPanel;
 
 public class MainMenuPanel extends JPanel {
 
-    private JButton ksiazki, czytelnicy, wyjscie, wypozyczenia, raporty;
+    private JButton books, readers, exit, borrowings, raports;
 
     public MainMenuPanel() {
 
         
         this.setSize(1366, 60);
         this.setLayout(null);
-        ksiazki = new JButton("Książki");
-        ksiazki.setBounds(50, 10, 100, 40);
-        ksiazki.setBackground(Color.white);
-        this.add(ksiazki);
+        books = new JButton("Książki");
+        books.setBounds(50, 10, 100, 40);
+        books.setBackground(Color.white);
+        this.add(books);
         this.setBackground(Color.gray);
         
-        czytelnicy = new JButton("Czytelnicy");
-        czytelnicy.setBounds(200, 10, 120, 40);
-        czytelnicy.setBackground(Color.white);
-        this.add(czytelnicy);
+        readers = new JButton("Czytelnicy");
+        readers.setBounds(200, 10, 120, 40);
+        readers.setBackground(Color.white);
+        this.add(readers);
         
-        raporty = new JButton("Raporty");
-        raporty.setBounds(560, 10, 120, 40);
-        raporty.setBackground(Color.white);
-        this.add(raporty);
+        raports = new JButton("Raporty");
+        raports.setBounds(560, 10, 120, 40);
+        raports.setBackground(Color.white);
+        this.add(raports);
         
-        wypozyczenia = new JButton("Wypożyczenia");
-        wypozyczenia.setBounds(370, 10, 140, 40);
-        wypozyczenia.setBackground(Color.white);
-        this.add(wypozyczenia);
+        borrowings = new JButton("Wypożyczenia");
+        borrowings.setBounds(370, 10, 140, 40);
+        borrowings.setBackground(Color.white);
+        this.add(borrowings);
         
-        wyjscie = new JButton("Wyjście");
-        wyjscie.setBounds(1150, 10, 100, 40);
-        wyjscie.setBackground(Color.RED);
-        this.add(wyjscie);
+        exit = new JButton("Wyjście");
+        exit.setBounds(1150, 10, 100, 40);
+        exit.setBackground(Color.RED);
+        this.add(exit);
 
     }
 
     public JButton getWypozyczenia() {
-        return wypozyczenia;
+        return borrowings;
     }
 
     public JButton getRaporty() {
-        return raporty;
+        return raports;
     }
 
     public JButton getKsiazki() {
-        return ksiazki;
+        return books;
     }
 
     public JButton getCzytelnicy() {
-        return czytelnicy;
+        return readers;
     }
 
     public JButton getWyjscie() {
-        return wyjscie;
+        return exit;
     }
 
     
