@@ -1,6 +1,6 @@
 package mdata;
 
-import SQL.SQLBorrowings;
+import sql.SQLBorrowings;
 import model.Borrowing;
 import java.text.DateFormat;
 import java.text.ParseException;

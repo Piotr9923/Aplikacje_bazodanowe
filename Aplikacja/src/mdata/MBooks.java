@@ -1,7 +1,7 @@
 
 package mdata;
 
-import SQL.SQLBooks;
+import sql.SQLBooks;
 import model.Author;
 import model.Book;
 import java.util.ArrayList;

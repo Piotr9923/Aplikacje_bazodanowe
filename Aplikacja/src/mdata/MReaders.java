@@ -1,6 +1,6 @@
 package mdata;
 
-import SQL.SQLReaders;
+import sql.SQLReaders;
 import java.util.ArrayList;
 import model.Reader;
 
